@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="ZJAI-PLUGIN v3.4.10 起的浏览器插件安装包与更新日志。">
+  <meta name="description" content="ZJAI-PLUGIN v3.4.8 起的浏览器插件安装包、更新日志与下载次数。">
   <meta name="theme-color" content="#0f172a">
   <title>ZJAI-PLUGIN 发布中心</title>
   <style>
@@ -92,6 +92,7 @@
     .version { display: grid; grid-template-columns: 150px minmax(0, 1fr) auto; gap: var(--space-4); align-items: center; padding: var(--space-4) 0; border-bottom: 1px solid var(--border); }
     .version strong { font-size: var(--text-base); }
     .version time, .version p { margin: 0; color: var(--muted); font-size: var(--text-sm); }
+    .download-count { display: inline-block; margin-top: var(--space-2); color: var(--muted); font-size: var(--text-xs); }
     .download { color: var(--primary); font-size: var(--text-sm); font-weight: 700; text-decoration-thickness: 1px; text-underline-offset: 3px; white-space: nowrap; }
     .download:hover { color: #1d4ed8; }
     footer { padding: var(--space-6) 0 var(--space-10); border-top: 1px solid var(--border); color: var(--muted); font-size: var(--text-sm); }
@@ -134,7 +135,7 @@
           <div class="hero-bottom">
             <p class="released">发布时间：2026-08-20　安装包：ZIP</p>
             <div class="actions">
-              <a class="button" href="releases/zjai-browser-plugin-v3.4.11.zip" download>下载 v3.4.11</a>
+              <a class="button" href="https://github.com/songhonglu/zjai-browser-plugin-releases/releases/download/v3.4.11/zjai-browser-plugin-v3.4.11.zip">下载 v3.4.11</a>
               <a class="button secondary" href="#releases">查看已发布版本</a>
             </div>
           </div>
@@ -165,15 +166,33 @@
       <section class="card" id="releases" aria-labelledby="releases-title">
         <h2 id="releases-title">已发布版本</h2>
         <div class="version-list">
-          <article class="version"><div><strong>v3.4.11</strong><br><time datetime="2026-08-20">2026-08-20</time></div><p>自定义圆形入口图标、手动裁剪与最近五次记录。</p><a class="download" href="releases/zjai-browser-plugin-v3.4.11.zip" download>下载安装包</a></article>
-          <article class="version"><div><strong>v3.4.10</strong><br><time datetime="2026-08-19">2026-08-19</time></div><p>项目检查兼容无前缀详情页与同源 iframe 入口。</p><a class="download" href="releases/zjai-browser-plugin-v3.4.10.zip" download>下载安装包</a></article>
+          <article class="version"><div><strong>v3.4.11</strong><br><time datetime="2026-08-20">2026-08-20</time><br><span class="download-count" data-release-tag="v3.4.11" data-asset-name="zjai-browser-plugin-v3.4.11.zip" aria-live="polite">下载次数：读取中</span></div><p>自定义圆形入口图标、手动裁剪与最近五次记录。</p><a class="download" href="https://github.com/songhonglu/zjai-browser-plugin-releases/releases/download/v3.4.11/zjai-browser-plugin-v3.4.11.zip">下载安装包</a></article>
+          <article class="version"><div><strong>v3.4.10</strong><br><time datetime="2026-08-19">2026-08-19</time><br><span class="download-count" data-release-tag="v3.4.10" data-asset-name="zjai-browser-plugin-v3.4.10.zip" aria-live="polite">下载次数：读取中</span></div><p>项目检查兼容无前缀详情页与同源 iframe 入口。</p><a class="download" href="https://github.com/songhonglu/zjai-browser-plugin-releases/releases/download/v3.4.10/zjai-browser-plugin-v3.4.10.zip">下载安装包</a></article>
+          <article class="version"><div><strong>v3.4.9</strong><br><time datetime="2026-08-18">2026-08-18</time><br><span class="download-count" data-release-tag="v3.4.9" data-asset-name="zjai-browser-plugin-v3.4.9.zip" aria-live="polite">下载次数：读取中</span></div><p>首页新增工时签卡入口，复用既有查询与处理链路。</p><a class="download" href="https://github.com/songhonglu/zjai-browser-plugin-releases/releases/download/v3.4.9/zjai-browser-plugin-v3.4.9.zip">下载安装包</a></article>
+          <article class="version"><div><strong>v3.4.8</strong><br><time datetime="2026-08-13">2026-08-13</time><br><span class="download-count" data-release-tag="v3.4.8" data-asset-name="zjai-browser-plugin-v3.4.8.zip" aria-live="polite">下载次数：读取中</span></div><p>批量处理、工时、代码扫描、问题处理与项目移交等功能基线。</p><a class="download" href="https://github.com/songhonglu/zjai-browser-plugin-releases/releases/download/v3.4.8/zjai-browser-plugin-v3.4.8.zip">下载安装包</a></article>
         </div>
       </section>
     </div>
   </main>
 
   <footer>
-    <div class="shell">ZJAI-PLUGIN · v3.4.10 起的公开安装包与版本日志</div>
+    <div class="shell">ZJAI-PLUGIN · v3.4.8 起的公开安装包、版本日志与下载次数</div>
   </footer>
+  <script>
+    (() => {
+      const counters = [...document.querySelectorAll('.download-count[data-release-tag][data-asset-name]')];
+      const apiUrl = 'https://api.github.com/repos/songhonglu/zjai-browser-plugin-releases/releases?per_page=100';
+      const unavailable = () => counters.forEach((counter) => { counter.textContent = '下载次数：暂不可用'; });
+
+      fetch(apiUrl, { headers: { Accept: 'application/vnd.github+json' } })
+        .then((response) => response.ok ? response.json() : Promise.reject(new Error('release API unavailable')))
+        .then((releases) => counters.forEach((counter) => {
+          const release = releases.find((item) => item.tag_name === counter.dataset.releaseTag);
+          const asset = release && release.assets.find((item) => item.name === counter.dataset.assetName);
+          counter.textContent = asset ? `下载次数：${asset.download_count}` : '下载次数：暂不可用';
+        }))
+        .catch(unavailable);
+    })();
+  </script>
 </body>
 </html>
