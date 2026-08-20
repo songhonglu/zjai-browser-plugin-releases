@@ -4,7 +4,7 @@
 
 - 最新版本：`v3.4.11`
 - 已发布版本：`v3.4.8`、`v3.4.9`、`v3.4.10`、`v3.4.11`
-- 下载次数：下载页读取 GitHub Release 资产的原生统计；统计从 Release 资产创建后开始累计。
+- 下载次数：显示“历史基数 + 此次发布后的 GitHub Release 新增下载”。基数为 v3.4.8 `12`、v3.4.9 `17`、v3.4.10 `24`、v3.4.11 `38`；GitHub Actions 每小时同步后续新增下载。
 - 下载页：`https://songhonglu.github.io/zjai-browser-plugin-releases/`
 - 更新日志：[CHANGELOG.md](CHANGELOG.md)
 

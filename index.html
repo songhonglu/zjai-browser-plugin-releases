@@ -181,15 +181,13 @@
   <script>
     (() => {
       const counters = [...document.querySelectorAll('.download-count[data-release-tag][data-asset-name]')];
-      const apiUrl = 'https://api.github.com/repos/songhonglu/zjai-browser-plugin-releases/releases?per_page=100';
       const unavailable = () => counters.forEach((counter) => { counter.textContent = '下载次数：暂不可用'; });
 
-      fetch(apiUrl, { headers: { Accept: 'application/vnd.github+json' } })
+      fetch('downloads.json', { cache: 'no-store' })
         .then((response) => response.ok ? response.json() : Promise.reject(new Error('release API unavailable')))
-        .then((releases) => counters.forEach((counter) => {
-          const release = releases.find((item) => item.tag_name === counter.dataset.releaseTag);
-          const asset = release && release.assets.find((item) => item.name === counter.dataset.assetName);
-          counter.textContent = asset ? `下载次数：${asset.download_count}` : '下载次数：暂不可用';
+        .then(({ counts }) => counters.forEach((counter) => {
+          const count = counts?.[counter.dataset.releaseTag]?.[counter.dataset.assetName];
+          counter.textContent = Number.isInteger(count) ? `下载次数：${count}` : '下载次数：暂不可用';
         }))
         .catch(unavailable);
     })();
