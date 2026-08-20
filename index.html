@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="ZJAI-PLUGIN 浏览器插件安装包、更新日志与历史版本下载。">
+  <meta name="theme-color" content="#0f172a">
+  <title>ZJAI-PLUGIN 发布中心</title>
+  <style>
+    :root {
+      --text: #111827;
+      --muted: #64748b;
+      --primary: #2563eb;
+      --accent: #0ea5e9;
+      --surface: #ffffff;
+      --page: #f8fafc;
+      --border: #e5e7eb;
+      --dark: #0f172a;
+      --radius-control: 6px;
+      --radius-card: 8px;
+      --radius-banner: 10px;
+      --shadow-hero: 0 18px 50px rgba(15, 23, 42, .12);
+      --space-2: 8px;
+      --space-3: 12px;
+      --space-4: 16px;
+      --space-6: 24px;
+      --space-8: 32px;
+      --space-10: 40px;
+      --space-12: 48px;
+      --space-16: 64px;
+      --content: 1080px;
+      --text-xs: 12px;
+      --text-sm: 14px;
+      --text-base: 16px;
+      --text-lg: 20px;
+      --text-xl: 28px;
+      --text-2xl: 40px;
+    }
+
+    * { box-sizing: border-box; }
+    html { background: var(--page); }
+    body {
+      margin: 0;
+      color: var(--text);
+      background: linear-gradient(180deg, #eef6ff 0, var(--page) 360px);
+      font-family: "Microsoft YaHei", Arial, sans-serif;
+      font-size: var(--text-base);
+      line-height: 1.65;
+    }
+    a { color: inherit; }
+    .shell { width: min(calc(100% - var(--space-8)), var(--content)); margin: 0 auto; }
+    .site-header { padding: var(--space-6) 0; }
+    .brand { display: flex; align-items: center; gap: var(--space-3); text-decoration: none; width: fit-content; }
+    .mark { display: grid; place-items: center; width: 34px; height: 34px; border-radius: 50%; color: #ffffff; background: var(--dark); font-weight: 800; letter-spacing: -1px; }
+    .brand-name { font-size: var(--text-lg); font-weight: 800; letter-spacing: .2px; }
+    .channel { color: var(--muted); font-size: var(--text-sm); }
+    .hero { padding: var(--space-8) 0 var(--space-12); }
+    .hero-card { overflow: hidden; border: 1px solid var(--border); border-radius: var(--radius-banner); background: var(--surface); box-shadow: var(--shadow-hero); }
+    .hero-top { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: var(--space-8); padding: var(--space-10); background: var(--dark); color: #ffffff; }
+    .eyebrow { margin: 0 0 var(--space-2); color: #bae6fd; font-size: var(--text-xs); font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
+    h1, h2, h3, p { margin-top: 0; }
+    h1 { margin-bottom: var(--space-3); font-size: var(--text-2xl); line-height: 1.25; }
+    h2 { margin-bottom: var(--space-4); font-size: var(--text-xl); line-height: 1.35; }
+    h3 { margin-bottom: var(--space-2); font-size: var(--text-base); }
+    .summary { max-width: 640px; margin-bottom: 0; color: #dbeafe; font-size: var(--text-base); }
+    .release-chip { align-self: start; padding: var(--space-2) var(--space-3); border: 1px solid #7dd3fc; border-radius: var(--radius-control); color: #e0f2fe; font-size: var(--text-sm); font-weight: 700; white-space: nowrap; }
+    .hero-bottom { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--space-4); padding: var(--space-6) var(--space-10); }
+    .released { margin: 0; color: var(--muted); font-size: var(--text-sm); }
+    .actions { display: flex; flex-wrap: wrap; gap: var(--space-3); }
+    .button { display: inline-flex; align-items: center; justify-content: center; min-height: 40px; padding: var(--space-2) var(--space-4); border: 1px solid var(--primary); border-radius: var(--radius-control); background: var(--primary); color: #ffffff; font-size: var(--text-sm); font-weight: 700; text-decoration: none; transition: background-color .16s ease, border-color .16s ease, transform .16s ease; }
+    .button:hover { background: #1d4ed8; border-color: #1d4ed8; transform: translateY(-1px); }
+    .button.secondary { border-color: var(--border); background: var(--surface); color: var(--text); }
+    .button.secondary:hover { border-color: var(--accent); background: #f0f9ff; }
+    .button:focus-visible, a:focus-visible { outline: 3px solid #93c5fd; outline-offset: 3px; }
+    .content { display: grid; gap: var(--space-6); padding-bottom: var(--space-16); }
+    .card { padding: var(--space-6); border: 1px solid var(--border); border-radius: var(--radius-card); background: var(--surface); }
+    .feature-list { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-4); margin: 0; padding: 0; list-style: none; }
+    .feature-list li { padding: var(--space-4); border-left: 3px solid var(--accent); background: #f8fafc; font-size: var(--text-sm); }
+    .steps { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-4); margin: 0; padding: 0; list-style: none; counter-reset: install; }
+    .steps li { position: relative; padding-left: var(--space-10); font-size: var(--text-sm); counter-increment: install; }
+    .steps li::before { position: absolute; left: 0; top: 0; display: grid; place-items: center; width: 28px; height: 28px; border-radius: 50%; background: #dbeafe; color: var(--primary); content: counter(install); font-size: var(--text-sm); font-weight: 800; }
+    .notice { margin: var(--space-4) 0 0; color: var(--muted); font-size: var(--text-sm); }
+    .version-list { border-top: 1px solid var(--border); }
+    .version { display: grid; grid-template-columns: 150px minmax(0, 1fr) auto; gap: var(--space-4); align-items: center; padding: var(--space-4) 0; border-bottom: 1px solid var(--border); }
+    .version strong { font-size: var(--text-base); }
+    .version time, .version p { margin: 0; color: var(--muted); font-size: var(--text-sm); }
+    .download { color: var(--primary); font-size: var(--text-sm); font-weight: 700; text-decoration-thickness: 1px; text-underline-offset: 3px; white-space: nowrap; }
+    .download:hover { color: #1d4ed8; }
+    footer { padding: var(--space-6) 0 var(--space-10); border-top: 1px solid var(--border); color: var(--muted); font-size: var(--text-sm); }
+    @media (max-width: 680px) {
+      .shell { width: min(calc(100% - var(--space-6)), var(--content)); }
+      .hero { padding-top: var(--space-4); }
+      .hero-top, .hero-bottom { padding: var(--space-6); }
+      .hero-top { grid-template-columns: 1fr; gap: var(--space-4); }
+      .release-chip { justify-self: start; }
+      h1 { font-size: var(--text-xl); }
+      .feature-list, .steps { grid-template-columns: 1fr; }
+      .version { grid-template-columns: 1fr; gap: var(--space-2); }
+    }
+    @media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; } }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="shell">
+      <a class="brand" href="#latest" aria-label="ZJAI-PLUGIN 发布中心首页">
+        <span class="mark" aria-hidden="true">Z</span>
+        <span class="brand-name">ZJAI-PLUGIN</span>
+        <span class="channel">浏览器插件发布中心</span>
+      </a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="latest" aria-labelledby="latest-title">
+      <div class="shell">
+        <div class="hero-card">
+          <div class="hero-top">
+            <div>
+              <p class="eyebrow">Latest release</p>
+              <h1 id="latest-title">v3.4.11 已发布</h1>
+              <p class="summary">插件圆形入口支持上传自定义图片、手动圆形裁剪，并保留最近五次图标记录，方便快速切换。</p>
+            </div>
+            <span class="release-chip">最新稳定版</span>
+          </div>
+          <div class="hero-bottom">
+            <p class="released">发布时间：2026-08-20　安装包：ZIP</p>
+            <div class="actions">
+              <a class="button" href="releases/zjai-browser-plugin-v3.4.11.zip" download>下载 v3.4.11</a>
+              <a class="button secondary" href="#history">查看历史版本</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="shell content">
+      <section class="card" aria-labelledby="highlights-title">
+        <h2 id="highlights-title">本次更新</h2>
+        <ul class="feature-list">
+          <li><strong>自定义入口图标</strong><br>上传本地图片作为插件圆形入口图标。</li>
+          <li><strong>手动圆形裁剪</strong><br>拖动并缩放裁剪圈，灵活选择图片局部内容。</li>
+          <li><strong>最近五次记录</strong><br>自动保留最近使用的图标，点击即可快速切换。</li>
+        </ul>
+      </section>
+
+      <section class="card" aria-labelledby="install-title">
+        <h2 id="install-title">安装步骤</h2>
+        <ol class="steps">
+          <li>下载最新版 ZIP 文件并解压到本地文件夹。</li>
+          <li>在 Chrome 或 Edge 扩展管理页开启“开发者模式”。</li>
+          <li>选择“加载已解压的扩展程序”，并选中包含 <code>manifest.json</code> 的文件夹。</li>
+        </ol>
+        <p class="notice">升级前建议在扩展管理页移除旧的已解压版本，再加载新版本目录。</p>
+      </section>
+
+      <section class="card" id="history" aria-labelledby="history-title">
+        <h2 id="history-title">历史版本</h2>
+        <div class="version-list">
+          <article class="version"><div><strong>v3.4.11</strong><br><time datetime="2026-08-20">2026-08-20</time></div><p>自定义圆形入口图标、手动裁剪与最近五次记录。</p><a class="download" href="releases/zjai-browser-plugin-v3.4.11.zip" download>下载安装包</a></article>
+          <article class="version"><div><strong>v3.4.10</strong><br><time datetime="2026-08-19">2026-08-19</time></div><p>项目检查兼容无前缀详情页与同源 iframe 入口。</p><a class="download" href="releases/zjai-browser-plugin-v3.4.10.zip" download>下载安装包</a></article>
+          <article class="version"><div><strong>v3.4.9</strong><br><time datetime="2026-08-18">2026-08-18</time></div><p>首页新增工时签卡入口，复用既有查询与处理链路。</p><a class="download" href="releases/zjai-browser-plugin-v3.4.9.zip" download>下载安装包</a></article>
+          <article class="version"><div><strong>v3.4.8</strong><br><time>历史版本</time></div><p>批量处理、工时、代码扫描、问题处理和项目移交等功能基线。</p><a class="download" href="releases/zjai-browser-plugin-v3.4.8.zip" download>下载安装包</a></article>
+          <article class="version"><div><strong>v3.4.7.2</strong><br><time>历史版本</time></div><p>历史维护版本，保留安装包供需要时回退使用。</p><a class="download" href="releases/zjai-browser-plugin-v3.4.7.2.zip" download>下载安装包</a></article>
+          <article class="version"><div><strong>v3.4.7</strong><br><time>历史版本</time></div><p>项目移交单与文档导出相关功能版本。</p><a class="download" href="releases/zjai-browser-plugin-v3.4.7.zip" download>下载安装包</a></article>
+          <article class="version"><div><strong>v3.4.6</strong><br><time>历史版本</time></div><p>历史归档安装包。</p><a class="download" href="releases/zjai-browser-plugin-v3.4.6.zip" download>下载安装包</a></article>
+          <article class="version"><div><strong>v3.4.2 补丁包</strong><br><time>历史版本</time></div><p>早期补丁包归档。</p><a class="download" href="releases/zjai-browser-plugin-patch-v3.4.2.zip" download>下载补丁包</a></article>
+          <article class="version"><div><strong>v3.4.1</strong><br><time>历史版本</time></div><p>历史归档安装包。</p><a class="download" href="releases/zjai-browser-plugin-v3.4.1.zip" download>下载安装包</a></article>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer>
+    <div class="shell">ZJAI-PLUGIN · 公开安装包与版本日志</div>
+  </footer>
+</body>
+</html>
