@@ -1,8 +1,9 @@
 # ZJAI-PLUGIN 公开发布仓
 
-这里仅发布可公开下载的浏览器插件安装包、更新日志与下载页面；插件源码维护在私有源码仓中。
+这里仅发布 `v3.4.10` 起可公开下载的浏览器插件安装包、更新日志与下载页面；插件源码维护在私有源码仓中。
 
 - 最新版本：`v3.4.11`
+- 已发布版本：`v3.4.10`、`v3.4.11`
 - 下载页：`https://songhonglu.github.io/zjai-browser-plugin-releases/`
 - 更新日志：[CHANGELOG.md](CHANGELOG.md)
 
