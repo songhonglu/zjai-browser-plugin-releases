@@ -71,6 +71,7 @@
     h2 { margin-bottom: var(--space-4); font-size: var(--text-xl); line-height: 1.35; }
     h3 { margin-bottom: var(--space-2); font-size: var(--text-base); }
     .summary { max-width: 640px; margin-bottom: 0; color: var(--hero-text); font-size: var(--text-base); }
+    .keep-together { white-space: nowrap; }
     .release-chip { align-self: start; padding: var(--space-2) var(--space-3); border: 1px solid var(--hero-border); border-radius: var(--radius-control); color: var(--hero-chip); font-size: var(--text-sm); font-weight: 700; white-space: nowrap; }
     .hero-bottom { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--space-4); padding: var(--space-6) var(--space-10); }
     .released { margin: 0; color: var(--muted); font-size: var(--text-sm); }
@@ -96,6 +97,9 @@
     .download { color: var(--primary); font-size: var(--text-sm); font-weight: 700; text-decoration-thickness: 1px; text-underline-offset: 3px; white-space: nowrap; }
     .download:hover { color: #1d4ed8; }
     footer { padding: var(--space-6) 0 var(--space-10); border-top: 1px solid var(--border); color: var(--muted); font-size: var(--text-sm); text-align: center; }
+    @media (max-width: 840px) {
+      .steps { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
     @media (max-width: 680px) {
       .shell { width: min(calc(100% - var(--space-6)), var(--content)); }
       .hero { padding-top: var(--space-4); }
@@ -128,7 +132,7 @@
             <div>
               <p class="eyebrow">Latest release</p>
               <h1 id="latest-title">v3.4.11 已发布</h1>
-              <p class="summary">插件圆形入口支持上传自定义图片、手动圆形裁剪，并保留最近五次图标记录，方便快速切换。</p>
+              <p class="summary">插件圆形入口支持上传自定义图片、<span class="keep-together">手动圆形裁剪</span>，并保留最近五次图标<span class="keep-together">记录</span>，方便快速切换。</p>
             </div>
             <span class="release-chip">最新稳定版</span>
           </div>
