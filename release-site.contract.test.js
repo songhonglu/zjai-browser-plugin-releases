@@ -29,6 +29,7 @@ assert.match(index, /COUNTER_API/);
 assert.match(index, /\/counts/);
 assert.match(index, /\/download/);
 assert.match(index, /event\.preventDefault\(\)/);
+assert.doesNotMatch(index, /event\.button/);
 assert.doesNotMatch(index, /api\.github\.com/);
 assert.match(workflow, /schedule:/);
 assert.match(workflow, /gh api/);

@@ -208,7 +208,7 @@
         if (!match) return;
         const [, tag, asset] = match;
         link.addEventListener('click', async (event) => {
-          if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+          if (event.defaultPrevented || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
           event.preventDefault();
           try {
             const response = await fetch(`${COUNTER_API}/download`, {
