@@ -184,16 +184,47 @@
   </footer>
   <script>
     (() => {
+      const COUNTER_API = 'https://zjai-download-counter.songhonglulove.workers.dev';
       const counters = [...document.querySelectorAll('.download-count[data-release-tag][data-asset-name]')];
       const unavailable = () => counters.forEach((counter) => { counter.textContent = '下载次数：暂不可用'; });
-
-      fetch('downloads.json', { cache: 'no-store' })
+      const setCount = (tag, asset, count) => {
+        const counter = counters.find((item) => item.dataset.releaseTag === tag && item.dataset.assetName === asset);
+        if (counter) counter.textContent = Number.isInteger(count) ? `下载次数：${count}` : '下载次数：暂不可用';
+      };
+      const readCounts = (url) => fetch(url, { cache: 'no-store' })
         .then((response) => response.ok ? response.json() : Promise.reject(new Error('release API unavailable')))
-        .then(({ counts }) => counters.forEach((counter) => {
-          const count = counts?.[counter.dataset.releaseTag]?.[counter.dataset.assetName];
-          counter.textContent = Number.isInteger(count) ? `下载次数：${count}` : '下载次数：暂不可用';
-        }))
+        .then(({ counts }) => counters.forEach((counter) => setCount(
+          counter.dataset.releaseTag,
+          counter.dataset.assetName,
+          counts?.[counter.dataset.releaseTag]?.[counter.dataset.assetName]
+        )));
+
+      readCounts(`${COUNTER_API}/counts`)
+        .catch(() => readCounts('downloads.json'))
         .catch(unavailable);
+
+      [...document.querySelectorAll('a[href]')].forEach((link) => {
+        const match = link.href.match(/\/releases\/download\/(v\d+\.\d+\.\d+)\/([^/?#]+)$/);
+        if (!match) return;
+        const [, tag, asset] = match;
+        link.addEventListener('click', async (event) => {
+          if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+          event.preventDefault();
+          try {
+            const response = await fetch(`${COUNTER_API}/download`, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ tag, asset })
+            });
+            if (!response.ok) throw new Error('counter API unavailable');
+            const result = await response.json();
+            setCount(tag, asset, result.count);
+            window.location.assign(result.downloadUrl || link.href);
+          } catch {
+            window.location.assign(link.href);
+          }
+        });
+      });
     })();
   </script>
 </body>

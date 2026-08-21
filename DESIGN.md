@@ -17,7 +17,7 @@
 - Header: compact brand mark, product name, and release-channel label.
 - Latest release card: version, release date, capability summary, primary download, and checksum-free installation hint.
 - Section card: bordered white surface with an 8px radius and 24px inner spacing.
-- Version row: only publicly released versions from v3.4.8 onward; version/date and an asynchronous same-origin `downloads.json` counter at the start. The value is the version's historical baseline plus GitHub Release downloads accrued after this release-page migration, refreshed every hour; release note and package link stay at the end; stack vertically below 680px.
+- Version row: only publicly released versions from v3.4.8 onward; version/date and an asynchronous Worker-backed counter at the start. The value is the version's historical baseline plus GitHub Release downloads accrued after this release-page migration; the Worker increments immediately on a download click, while the hourly GitHub Action reconciles it with Release data. If the Worker is unavailable, the page falls back to same-origin `downloads.json`; release note and package link stay at the end; stack vertically below 680px.
 - Footer: centered `ZJAI-PLUGIN · 公开安装包` label.
 
 ## Accessibility
@@ -25,4 +25,4 @@
 - All downloads are standard links with descriptive accessible names.
 - Color is never the only release-status signal.
 - Focus uses a visible blue outline; reduced-motion users receive no non-essential transitions.
-- Download counters use an `aria-live="polite"` status; API failure falls back to “暂不可用” without blocking the package link.
+- Download counters use an `aria-live="polite"` status; API failure falls back to `downloads.json` or “暂不可用” without blocking the package link, and a failed increment still follows the original download URL.
