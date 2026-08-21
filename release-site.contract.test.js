@@ -30,6 +30,7 @@ assert.match(index, /\/counts/);
 assert.match(index, /\/download/);
 assert.match(index, /event\.preventDefault\(\)/);
 assert.doesNotMatch(index, /event\.button/);
+assert.match(index, /setTimeout\(\(\) => window\.location\.assign/);
 assert.doesNotMatch(index, /api\.github\.com/);
 assert.match(workflow, /schedule:/);
 assert.match(workflow, /gh api/);

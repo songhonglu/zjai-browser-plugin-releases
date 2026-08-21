@@ -219,7 +219,7 @@
             if (!response.ok) throw new Error('counter API unavailable');
             const result = await response.json();
             setCount(tag, asset, result.count);
-            window.location.assign(result.downloadUrl || link.href);
+            setTimeout(() => window.location.assign(result.downloadUrl || link.href), 150);
           } catch {
             window.location.assign(link.href);
           }
