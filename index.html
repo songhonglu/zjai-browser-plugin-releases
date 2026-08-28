@@ -28,6 +28,7 @@
       --card-shadow: 0 0 0 1px var(--line), 0 18px 50px rgba(17, 24, 39, .08);
       --focus: #3b82f6;
       --on-accent: #ffffff;
+      --danger: #dc2626;
       --space-2: 8px;
       --space-3: 12px;
       --space-4: 16px;
@@ -64,6 +65,7 @@
       --card-shadow: 0 0 0 1px var(--line), 0 22px 56px rgba(0, 0, 0, .34);
       --focus: #8fc7ff;
       --on-accent: #070a12;
+      --danger: #fca5a5;
     }
 
     * { box-sizing: border-box; }
@@ -103,6 +105,7 @@
     h2 { margin-bottom: var(--space-6); font-size: var(--text-xl); font-weight: 600; letter-spacing: -.03em; line-height: 1.2; }
     .summary { max-width: 42rem; margin-bottom: 0; color: var(--muted); }
     .keep-together { white-space: nowrap; }
+    .delay-emphasis { color: var(--danger); font-weight: 700; }
     .release-chip { align-self: start; padding: 6px var(--space-3); border-radius: 999px; background: var(--surface-soft); box-shadow: 0 0 0 1px var(--line); color: var(--accent); font-size: var(--text-xs); font-weight: 600; white-space: nowrap; }
     .hero-bottom { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--space-4); padding: var(--space-6) var(--space-12); }
     .released { margin: 0; color: var(--muted); font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: var(--text-xs); font-variant-numeric: tabular-nums; }
@@ -179,15 +182,15 @@
           <div class="hero-top">
             <div>
               <p class="eyebrow">Latest release</p>
-              <h1 id="latest-title">v3.4.11 已发布</h1>
-              <p class="summary">插件圆形入口支持上传自定义图片、<span class="keep-together">手动圆形裁剪</span>，并保留最近五次<span class="keep-together">图标记录</span>，方便<span class="keep-together">快速切换</span>。</p>
+              <h1 id="latest-title">v3.4.12 已发布</h1>
+              <p class="summary"><span class="keep-together">代码检测</span>仅扫描<span class="keep-together">浙江军团</span>、<span class="keep-together">浙江大区</span>、<span class="keep-together">江浙大区</span>；<span class="keep-together">项目台账检查</span>中“是否延期”为<span class="delay-emphasis keep-together">“延期”时</span>红色加粗显示。</p>
             </div>
             <span class="release-chip">最新稳定版</span>
           </div>
           <div class="hero-bottom">
-            <p class="released">发布时间：2026-08-20　安装包：ZIP</p>
+            <p class="released">发布时间：2026-08-28　安装包：ZIP</p>
             <div class="actions">
-              <a class="button" href="https://github.com/songhonglu/zjai-browser-plugin-releases/releases/download/v3.4.11/zjai-browser-plugin-v3.4.11.zip">下载 v3.4.11</a>
+              <a class="button" href="https://github.com/songhonglu/zjai-browser-plugin-releases/releases/download/v3.4.12/zjai-browser-plugin-v3.4.12.zip">下载 v3.4.12</a>
               <a class="button secondary" href="#releases">查看已发布版本</a>
             </div>
           </div>
@@ -199,9 +202,9 @@
       <section class="card" aria-labelledby="highlights-title">
         <h2 id="highlights-title">本次更新</h2>
         <ul class="feature-list">
-          <li><strong><span class="keep-together">自定义入口图标</span></strong><br>上传本地图片作为<span class="keep-together">插件圆形入口图标</span>。</li>
-          <li><strong><span class="keep-together">手动圆形裁剪</span></strong><br>拖动并<span class="keep-together">缩放裁剪圈</span>，灵活选择<span class="keep-together">图片局部内容</span>。</li>
-          <li><strong><span class="keep-together">最近五次记录</span></strong><br>自动保留<span class="keep-together">最近使用的图标</span>，点击即可<span class="keep-together">快速切换</span>。</li>
+          <li><strong><span class="keep-together">浙江区域扫描</span></strong><br>代码检测只保留<span class="keep-together">浙江军团</span>、<span class="keep-together">浙江大区</span>、<span class="keep-together">江浙大区</span>项目。</li>
+          <li><strong><span class="keep-together">区域精确过滤</span></strong><br>明确排除<span class="keep-together">上海军团</span>及<span class="keep-together">其他区域项目</span>。</li>
+          <li><strong><span class="keep-together">延期状态高亮</span></strong><br>项目台账中“是否延期”为<span class="delay-emphasis keep-together">“延期”时</span>红色加粗显示。</li>
         </ul>
       </section>
 
@@ -218,6 +221,7 @@
       <section class="card" id="releases" aria-labelledby="releases-title">
         <h2 id="releases-title">已发布版本</h2>
         <div class="version-list">
+          <article class="version"><div><strong>v3.4.12</strong><br><time datetime="2026-08-28">2026-08-28</time><br><span class="download-count" data-release-tag="v3.4.12" data-asset-name="zjai-browser-plugin-v3.4.12.zip" aria-live="polite">下载次数：读取中</span></div><p><span class="keep-together">浙江区域代码扫描</span>、<span class="delay-emphasis">延期</span>状态高亮。</p><a class="download" href="https://github.com/songhonglu/zjai-browser-plugin-releases/releases/download/v3.4.12/zjai-browser-plugin-v3.4.12.zip">下载安装包</a></article>
           <article class="version"><div><strong>v3.4.11</strong><br><time datetime="2026-08-20">2026-08-20</time><br><span class="download-count" data-release-tag="v3.4.11" data-asset-name="zjai-browser-plugin-v3.4.11.zip" aria-live="polite">下载次数：读取中</span></div><p><span class="keep-together">自定义入口图标</span>、<span class="keep-together">手动裁剪</span>、<span class="keep-together">最近五次记录</span>。</p><a class="download" href="https://github.com/songhonglu/zjai-browser-plugin-releases/releases/download/v3.4.11/zjai-browser-plugin-v3.4.11.zip">下载安装包</a></article>
           <article class="version"><div><strong>v3.4.10</strong><br><time datetime="2026-08-19">2026-08-19</time><br><span class="download-count" data-release-tag="v3.4.10" data-asset-name="zjai-browser-plugin-v3.4.10.zip" aria-live="polite">下载次数：读取中</span></div><p><span class="keep-together">项目检查</span>兼容<span class="keep-together">无前缀详情页</span>和<span class="keep-together">同源 iframe</span>。</p><a class="download" href="https://github.com/songhonglu/zjai-browser-plugin-releases/releases/download/v3.4.10/zjai-browser-plugin-v3.4.10.zip">下载安装包</a></article>
           <article class="version"><div><strong>v3.4.9</strong><br><time datetime="2026-08-18">2026-08-18</time><br><span class="download-count" data-release-tag="v3.4.9" data-asset-name="zjai-browser-plugin-v3.4.9.zip" aria-live="polite">下载次数：读取中</span></div><p>首页新增<span class="keep-together">工时签卡</span>入口，复用既有查询与<span class="keep-together">处理链路</span>。</p><a class="download" href="https://github.com/songhonglu/zjai-browser-plugin-releases/releases/download/v3.4.9/zjai-browser-plugin-v3.4.9.zip">下载安装包</a></article>
