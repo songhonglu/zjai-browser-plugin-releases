@@ -10,9 +10,9 @@ const downloads = JSON.parse(fs.readFileSync(path.join(root, 'downloads.json'), 
 const workflow = fs.readFileSync(path.join(root, '.github', 'workflows', 'refresh-download-counts.yml'), 'utf8');
 const refreshFilter = path.join(root, '.github', 'workflows', 'refresh-download-counts.jq');
 const worker = fs.readFileSync(path.join(root, 'worker.js'), 'utf8');
-const versions = ['3.4.8', '3.4.9', '3.4.10', '3.4.11', '3.4.12', '3.4.13'];
-const baselineCounts = {'3.4.8': 12, '3.4.9': 17, '3.4.10': 24, '3.4.11': 38, '3.4.12': 0, '3.4.13': 0};
-const releaseStarts = {'3.4.8': 10, '3.4.9': 10, '3.4.10': 11, '3.4.11': 12, '3.4.12': 0, '3.4.13': 0};
+const versions = ['3.4.8', '3.4.9', '3.4.10', '3.4.11', '3.4.12', '3.4.13', '3.4.14'];
+const baselineCounts = {'3.4.8': 12, '3.4.9': 17, '3.4.10': 24, '3.4.11': 38, '3.4.12': 0, '3.4.13': 0, '3.4.14': 0};
+const releaseStarts = {'3.4.8': 10, '3.4.9': 10, '3.4.10': 11, '3.4.11': 12, '3.4.12': 0, '3.4.13': 0, '3.4.14': 0};
 
 assert.match(index, /ZJAI-PLUGIN/);
 assert.match(index, /<html lang="zh-CN" data-theme="light">/);
@@ -26,6 +26,8 @@ assert.match(index, /v3\.4\.12/);
 assert.match(index, /https:\/\/github\.com\/songhonglu\/zjai-browser-plugin-releases\/releases\/download\/v3\.4\.12\/zjai-browser-plugin-v3\.4\.12\.zip/);
 assert.match(index, /v3\.4\.13/);
 assert.match(index, /https:\/\/github\.com\/songhonglu\/zjai-browser-plugin-releases\/releases\/download\/v3\.4\.13\/zjai-browser-plugin-v3\.4\.13\.zip/);
+assert.match(index, /v3\.4\.14/);
+assert.match(index, /https:\/\/github\.com\/songhonglu\/zjai-browser-plugin-releases\/releases\/download\/v3\.4\.14\/zjai-browser-plugin-v3\.4\.14\.zip/);
 assert.match(index, /v3\.4\.10/);
 assert.match(index, /https:\/\/github\.com\/songhonglu\/zjai-browser-plugin-releases\/releases\/download\/v3\.4\.10\/zjai-browser-plugin-v3\.4\.10\.zip/);
 assert.match(index, /安装步骤/);
@@ -50,10 +52,9 @@ assert.match(index, /<span class="keep-together">项目检查<\/span>兼容<span
 assert.match(index, /footer \{[^}]*text-align: center/s);
 assert.match(index, /<div class="shell">ZJAI-PLUGIN · 公开安装包<\/div>/);
 assert.match(index, /\.keep-together \{[^}]*white-space: nowrap/s);
-assert.match(index, /<span class="keep-together">杭州项目周报<\/span>/);
-assert.match(index, /<span class="keep-together">待办批量处理<\/span>识别<span class="keep-together">【杭州】<\/span>、<span class="keep-together">【杭州区】<\/span>项目周报。/);
-assert.match(index, /<span class="keep-together">固定区域白名单<\/span>/);
-assert.match(index, /项目周报仍只允许<span class="keep-together">浙江军团<\/span>、<span class="keep-together">浙江大区<\/span>、<span class="keep-together">江浙大区<\/span>、<span class="keep-together">杭州<\/span>、<span class="keep-together">杭州区<\/span>。/);
+assert.match(index, /<span class="keep-together">多类型待办<\/span>/);
+assert.match(index, /<span class="keep-together">取消部门\/区域白名单<\/span>/);
+assert.match(index, /<span class="keep-together">来源类型校验<\/span>/);
 assert.match(index, /<span class="keep-together">代码扫描规则不变<\/span>/);
 assert.match(index, /代码检测继续仅扫描<span class="keep-together">浙江军团<\/span>、<span class="keep-together">浙江大区<\/span>、<span class="keep-together">江浙大区<\/span>项目。/);
 assert.match(index, /\.delay-emphasis \{[^}]*color: var\(--danger\);[^}]*font-weight: 700/s);
@@ -68,6 +69,7 @@ assert.match(worker, /zjai-browser-plugin-releases/);
 assert.match(worker, /GH_TOKEN/);
 assert.match(worker, /downloads\.json/);
 assert.match(worker, /v3\.4\.13/);
+assert.match(worker, /v3\.4\.14/);
 assert.match(worker, /POST/);
 assert.match(worker, /\(request\.method === 'POST' \|\| request\.method === 'OPTIONS'\) && !allowedOrigin\(request, env\)/);
 for (const version of versions) {
