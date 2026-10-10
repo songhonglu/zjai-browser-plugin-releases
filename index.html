@@ -125,14 +125,14 @@
   .ui{border:1px solid var(--line);border-radius:16px;overflow:hidden;background:#fff;box-shadow:var(--shadow-s)}
   .ui .uh{height:36px;display:flex;align-items:center;justify-content:space-between;padding:0 12px;color:#fff;font-size:13px;font-weight:800}
   .ui .ub{padding:12px}
-  .ui .row{display:flex;align-items:center;gap:8px;font-size:12.5px;padding:6px 0;border-bottom:1px solid #f1f3f8;color:#334155}
+  .ui .row{display:flex;align-items:center;gap:8px;font-size:14px;line-height:1.7;padding:8px 0;border-bottom:1px solid #f1f3f8;color:var(--ink)}
   .ui .chk{width:14px;height:14px;border-radius:4px;border:1px solid #93c5fd;background:#eff6ff}
-  .ui .btn{margin-top:10px;display:inline-block;background:#2563eb;color:#fff;border-radius:8px;padding:6px 10px;font-size:12px;font-weight:700}
-  .ui .mini{font-size:12px;color:#64748b}
+  .ui .btn{margin-top:10px;display:inline-block;background:#2563eb;color:#fff;border-radius:8px;padding:6px 10px;font-size:14px;font-weight:700}
+  .ui .mini{font-size:14px;line-height:1.7;color:var(--sub)}
   .dots{display:flex;gap:6px;margin-top:8px}
   .dots i{width:18px;height:18px;border-radius:6px;display:block}
   .g{background:#dcfce7}.r{background:#fee2e2}.o{background:#ffedd5}.p{background:#ede9fe}
-  .field{height:28px;border:1px solid #e5e7eb;border-radius:8px;margin-bottom:8px;background:#f8fafc;color:#94a3b8;font-size:12px;display:flex;align-items:center;padding:0 8px}
+  .field{min-height:36px;border:1px solid var(--line);border-radius:8px;margin-bottom:8px;background:#f8fafc;color:var(--sub);font-size:14px;line-height:1.7;display:flex;align-items:center;padding:6px 8px}
   .delay{color:#dc2626;font-weight:800}
   .barline{height:8px;border-radius:99px;background:#e5e7eb;overflow:hidden;margin:8px 0}
   .barline span{display:block;height:100%;width:68%;background:linear-gradient(90deg,#2563eb,#7c3aed)}
@@ -141,15 +141,16 @@
   @media(max-width:760px){.wl{grid-template-columns:1fr}}
   .mock{background:#fff;border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow-m);overflow:hidden}
   .mock .mh{background:var(--grad);color:#fff;padding:13px 15px;font-weight:700;font-size:14px}
-  .mock .mb{padding:14px}
-  .mock input,.mock .fake-btn{height:32px;border-radius:8px;font-size:12px}
+  .mock .mb{padding:16px 18px;font-size:14px;line-height:1.7;color:var(--ink)}
+  .mock input,.mock .fake-btn{height:32px;border-radius:8px;font-size:14px;font-family:inherit}
   .mock .bar{display:flex;gap:8px;margin-bottom:10px}
   .mock input{flex:1;border:1px solid var(--line);padding:0 8px;color:var(--sub)}
   .mock .fake-btn{border:none;background:#2563eb;color:#fff;padding:0 12px;font-weight:700}
-  .mock table{width:100%;border-collapse:collapse;font-size:12px}
-  .mock th,.mock td{text-align:left;padding:7px 4px;border-bottom:1px solid var(--line);white-space:nowrap}
+  .mock table{width:100%;border-collapse:collapse;font-size:14px;line-height:1.7}
+  .mock th,.mock td{text-align:left;padding:11px 8px;border-bottom:1px solid var(--line);white-space:normal;color:var(--ink);font-weight:400}
   .mock th{color:var(--sub);font-weight:600}
-  .pager{display:flex;gap:6px;align-items:center;justify-content:flex-end;margin-top:10px;font-size:12px;color:var(--sub);flex-wrap:wrap}
+  .mock .mini,.mock .row{font-size:14px;line-height:1.7;color:var(--sub)}
+  .pager{display:flex;gap:6px;align-items:center;justify-content:flex-end;margin-top:10px;font-size:14px;line-height:1.7;color:var(--sub);flex-wrap:wrap}
   .pager b{border:1px solid #2563eb;color:#2563eb;border-radius:4px;min-width:22px;text-align:center;padding:1px 4px}
   .fmt{background:#fff;border:1px solid var(--line);border-radius:16px;padding:20px 22px}
   .fmt table{width:100%;border-collapse:collapse;font-size:14px}
@@ -658,9 +659,8 @@
   </section>
 
   <div class="foot">
-    <p><b>ZJAI</b> · 致远协同提效扩展说明</p>
-    <p>当前版本 v3.4.15 · 首页扇形入口 · 已发查询支持分页和失焦跳转</p>
-    <p style="margin-top:10px"><a href="https://github.com/songhonglu/zjai-browser-plugin-releases/releases/download/v3.4.15/zjai-browser-plugin-v3.4.15.zip">下载 zjai-browser-plugin-v3.4.15.zip</a> · <a href="download-archive.html">原下载页存档</a></p>
+    <p>© 2026 ZJAI</p>
+    <p><a href="mailto:chen529172628@gmail.com">联系作者</a></p>
   </div>
 </div>
 <button class="to-top" id="toTop" title="回到顶部" aria-label="回到顶部">↑</button>
