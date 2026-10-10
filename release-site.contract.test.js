@@ -77,14 +77,21 @@ assert.match(worker, /v3\.4\.15/);
 assert.match(worker, /POST/);
 assert.match(worker, /\(request\.method === 'POST' \|\| request\.method === 'OPTIONS'\) && !allowedOrigin\(request, env\)/);
 assert.match(promo, /ZJAI/);
-assert.match(promo, /把重复待办，收成一次处理/);
+assert.match(promo, /把协同里的重复事，放到手边/);
+assert.match(promo, /周工作计划汇总/);
+assert.match(promo, /项目台账检查/);
+assert.match(promo, /项目移交会议纪要/);
+assert.match(promo, /代码合规扫描/);
+assert.match(promo, /工单速配/);
+assert.match(promo, /客开冲突雷达/);
 assert.match(promo, /https:\/\/github\.com\/songhonglu\/zjai-browser-plugin-releases\/releases\/download\/v3\.4\.15\/zjai-browser-plugin-v3\.4\.15\.zip/);
 assert.match(promo, /download-archive\.html/, '宣传页应保留原下载页入口');
 assert.match(promo, /已发查询/);
 assert.match(promo, /扇形入口/);
 assert.doesNotMatch(promo, /v3\.4\.7\.2/);
 for (const version of versions) {
-  assert.match(index, new RegExp(`data-release-tag="v${version.replaceAll('.', '\\.')}"`));
+  assert.match(index, new RegExp(`zjai-browser-plugin-v${version.replaceAll('.', '\\.')}\\.zip`));
+  assert.doesNotMatch(index, /class="download-count"/);
   assert.match(changelog, new RegExp(`## \\[${version.replaceAll('.', '\\.')}`));
   assert.ok([
     path.join(root, 'releases', `zjai-browser-plugin-v${version}.zip`),
