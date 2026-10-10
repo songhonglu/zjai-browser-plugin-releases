@@ -1,322 +1,359 @@
-<!doctype html>
-<html lang="zh-CN" data-theme="light">
+<!DOCTYPE html>
+<html lang="zh-CN">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="ZJAI-PLUGIN v3.4.8 起的浏览器插件安装包、更新日志与下载次数。">
-  <meta id="theme-color" name="theme-color" content="#f7f7f2">
-  <script>
-    try {
-      if (localStorage.getItem('zjai-release-theme') === 'dark') document.documentElement.dataset.theme = 'dark';
-    } catch {}
-  </script>
-  <title>ZJAI-PLUGIN 发布中心</title>
-  <style>
-    :root {
-      --canvas: #f7f7f2;
-      --ambient-one: rgba(126, 170, 240, .16);
-      --ambient-two: rgba(196, 222, 255, .42);
-      --surface: #ffffff;
-      --surface-soft: #f2f5fa;
-      --ink: #111827;
-      --muted: #667085;
-      --accent: #155eef;
-      --accent-strong: #004eeb;
-      --line: rgba(17, 24, 39, .12);
-      --hero-surface: linear-gradient(135deg, #eaf2ff 0%, #ffffff 62%, #f7f7f2 100%);
-      --hero-halo: rgba(21, 94, 239, .16);
-      --card-shadow: 0 0 0 1px var(--line), 0 18px 50px rgba(17, 24, 39, .08);
-      --focus: #3b82f6;
-      --on-accent: #ffffff;
-      --danger: #dc2626;
-      --space-2: 8px;
-      --space-3: 12px;
-      --space-4: 16px;
-      --space-6: 24px;
-      --space-8: 32px;
-      --space-10: 40px;
-      --space-12: 48px;
-      --space-16: 64px;
-      --space-20: 80px;
-      --content: 1120px;
-      --text-xs: 12px;
-      --text-sm: 14px;
-      --text-base: 16px;
-      --text-lg: 20px;
-      --text-xl: 28px;
-      --text-display: 48px;
-      --radius-control: 8px;
-      --radius-surface: 18px;
-    }
-
-    html[data-theme="dark"] {
-      --canvas: #070a12;
-      --ambient-one: rgba(101, 160, 255, .18);
-      --ambient-two: rgba(183, 119, 255, .12);
-      --surface: rgba(14, 20, 33, .84);
-      --surface-soft: rgba(255, 255, 255, .06);
-      --ink: #f7f7f2;
-      --muted: #aab6c8;
-      --accent: #8fc7ff;
-      --accent-strong: #c8e5ff;
-      --line: rgba(255, 255, 255, .14);
-      --hero-surface: linear-gradient(135deg, rgba(17, 34, 64, .98) 0%, rgba(11, 17, 30, .96) 58%, rgba(29, 19, 52, .96) 100%);
-      --hero-halo: rgba(143, 199, 255, .26);
-      --card-shadow: 0 0 0 1px var(--line), 0 22px 56px rgba(0, 0, 0, .34);
-      --focus: #8fc7ff;
-      --on-accent: #070a12;
-      --danger: #fca5a5;
-    }
-
-    * { box-sizing: border-box; }
-    html { background: var(--canvas); scroll-behavior: smooth; }
-    body {
-      min-width: 320px;
-      margin: 0;
-      color: var(--ink);
-      background:
-        radial-gradient(circle at 84% 0%, var(--ambient-one) 0, transparent 30rem),
-        radial-gradient(circle at 12% 18%, var(--ambient-two) 0, transparent 28rem),
-        var(--canvas);
-      font-family: "PingFang SC", "Microsoft YaHei", Arial, sans-serif;
-      font-size: var(--text-base);
-      line-height: 1.7;
-    }
-    a { color: inherit; }
-    button { font: inherit; }
-    .shell { width: min(calc(100% - var(--space-8)), var(--content)); margin: 0 auto; }
-    .site-header { padding: var(--space-6) 0 var(--space-2); }
-    .header-shell { display: flex; align-items: center; justify-content: space-between; gap: var(--space-4); }
-    .brand { display: flex; align-items: center; gap: var(--space-3); color: var(--ink); text-decoration: none; }
-    .mark { display: grid; place-items: center; width: 36px; height: 36px; border-radius: 50%; background: var(--ink); color: var(--canvas); font-weight: 600; letter-spacing: -.08em; }
-    .brand-name { font-size: var(--text-lg); font-weight: 600; letter-spacing: -.03em; }
-    .channel { color: var(--muted); font-size: var(--text-sm); }
-    .theme-switch { display: inline-flex; min-height: 44px; padding: 4px; border-radius: var(--radius-control); background: var(--surface-soft); box-shadow: 0 0 0 1px var(--line); }
-    .theme-option { min-width: 54px; min-height: 44px; border: 0; border-radius: 5px; background: transparent; color: var(--muted); cursor: pointer; font-size: var(--text-sm); font-weight: 500; }
-    .theme-option[aria-pressed="true"] { background: var(--surface); color: var(--ink); box-shadow: 0 1px 3px rgba(17, 24, 39, .12); }
-    .hero { padding: var(--space-8) 0 var(--space-12); }
-    .hero-card, .card { background: var(--surface); box-shadow: var(--card-shadow); }
-    .hero-card { position: relative; overflow: hidden; border-radius: var(--radius-surface); }
-    .hero-top { position: relative; display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: var(--space-8); padding: var(--space-12); background: var(--hero-surface); isolation: isolate; }
-    .hero-top::after { position: absolute; right: -7rem; top: -9rem; z-index: -1; width: 25rem; height: 25rem; border-radius: 50%; background: radial-gradient(circle, var(--hero-halo) 0, transparent 68%); content: ""; }
-    .eyebrow { margin: 0 0 var(--space-3); color: var(--accent); font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: var(--text-xs); font-weight: 600; letter-spacing: .08em; text-transform: uppercase; }
-    h1, h2, h3, p { margin-top: 0; }
-    h1 { max-width: 12ch; margin-bottom: var(--space-4); font-size: var(--text-display); font-weight: 600; letter-spacing: -.04em; line-height: 1.08; text-wrap: balance; }
-    h2 { margin-bottom: var(--space-6); font-size: var(--text-xl); font-weight: 600; letter-spacing: -.03em; line-height: 1.2; }
-    .summary { max-width: 42rem; margin-bottom: 0; color: var(--muted); }
-    .keep-together { white-space: nowrap; }
-    .delay-emphasis { color: var(--danger); font-weight: 700; }
-    .release-chip { align-self: start; padding: 6px var(--space-3); border-radius: 999px; background: var(--surface-soft); box-shadow: 0 0 0 1px var(--line); color: var(--accent); font-size: var(--text-xs); font-weight: 600; white-space: nowrap; }
-    .hero-bottom { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--space-4); padding: var(--space-6) var(--space-12); }
-    .released { margin: 0; color: var(--muted); font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: var(--text-xs); font-variant-numeric: tabular-nums; }
-    .actions { display: flex; flex-wrap: wrap; gap: var(--space-3); }
-    .button { display: inline-flex; align-items: center; justify-content: center; min-height: 44px; padding: 0 var(--space-4); border: 0; border-radius: var(--radius-control); background: var(--accent); box-shadow: 0 0 0 1px var(--accent); color: var(--on-accent); font-size: var(--text-sm); font-weight: 600; text-decoration: none; transition: transform .18s ease, background-color .18s ease, box-shadow .18s ease; }
-    .button:hover { background: var(--accent-strong); transform: translateY(-1px); }
-    .button:active { transform: translateY(0); }
-    .button.secondary { background: var(--surface-soft); box-shadow: 0 0 0 1px var(--line); color: var(--ink); }
-    .button.secondary:hover { background: var(--surface); box-shadow: 0 0 0 1px var(--accent); }
-    .button:focus-visible, a:focus-visible, .theme-option:focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; }
-    .content { display: grid; gap: var(--space-8); padding-bottom: var(--space-20); }
-    .card { padding: var(--space-8); border-radius: var(--radius-surface); }
-    .feature-list { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: var(--space-4); margin: 0; padding: 0; list-style: none; }
-    .feature-list li { min-height: 142px; padding: var(--space-6); background: var(--surface-soft); box-shadow: inset 3px 0 0 var(--accent); font-size: var(--text-sm); }
-    .feature-list li:first-child { grid-column: span 6; }
-    .feature-list li:not(:first-child) { grid-column: span 3; }
-    .steps { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-6); margin: 0; padding: 0; list-style: none; counter-reset: install; }
-    .steps li { position: relative; padding-left: var(--space-10); color: var(--muted); font-size: var(--text-sm); counter-increment: install; }
-    .steps li::before { position: absolute; left: 0; top: 0; display: grid; place-items: center; width: 32px; height: 32px; border-radius: 50%; background: var(--surface-soft); box-shadow: 0 0 0 1px var(--line); color: var(--accent); content: counter(install); font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: var(--text-xs); font-weight: 600; }
-    .notice { margin: var(--space-6) 0 0; color: var(--muted); font-size: var(--text-sm); }
-    .version-list { box-shadow: inset 0 1px 0 var(--line); }
-    .version { display: grid; grid-template-columns: 160px minmax(0, 1fr) auto; gap: var(--space-6); align-items: center; padding: var(--space-6) 0; box-shadow: inset 0 -1px 0 var(--line); }
-    .version strong { font-size: var(--text-base); font-weight: 600; }
-    .version time, .version p { margin: 0; color: var(--muted); font-size: var(--text-sm); }
-    .version time, .download-count { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-variant-numeric: tabular-nums; }
-    .download-count { display: inline-block; margin-top: var(--space-2); color: var(--muted); font-size: var(--text-xs); }
-    .download { color: var(--accent); font-size: var(--text-sm); font-weight: 600; text-decoration-thickness: 1px; text-underline-offset: 4px; white-space: nowrap; }
-    .download:hover { color: var(--accent-strong); }
-    footer { padding: var(--space-8) 0 var(--space-12); box-shadow: inset 0 1px 0 var(--line); color: var(--muted); font-size: var(--text-sm); text-align: center; }
-    ::view-transition-old(root), ::view-transition-new(root) { animation-duration: .18s; animation-timing-function: ease; }
-    @media (max-width: 840px) {
-      .feature-list li:first-child { grid-column: span 12; }
-      .feature-list li:not(:first-child) { grid-column: span 6; }
-      .steps { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-    }
-    @media (max-width: 680px) {
-      .shell { width: min(calc(100% - var(--space-6)), var(--content)); }
-      .site-header { padding-top: var(--space-4); }
-      .header-shell { align-items: flex-start; flex-direction: column; }
-      .hero { padding-top: var(--space-6); }
-      .hero-top, .hero-bottom, .card { padding: var(--space-6); }
-      .hero-top { grid-template-columns: 1fr; gap: var(--space-6); }
-      h1 { font-size: 36px; }
-      .feature-list li, .feature-list li:first-child, .feature-list li:not(:first-child) { grid-column: span 12; min-height: 0; }
-      .feature-list, .steps, .version { grid-template-columns: 1fr; }
-      .version { gap: var(--space-3); }
-    }
-    @media (prefers-reduced-motion: reduce) {
-      html { scroll-behavior: auto; }
-      *, *::before, *::after { transition-duration: .01ms !important; animation-duration: .01ms !important; }
-      ::view-transition-old(root), ::view-transition-new(root) { animation: none; }
-    }
-  </style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>ZJAI · 致远协同提效扩展</title>
+<style>
+  :root{
+    --brand1:#2563eb; --brand2:#7c3aed; --brand3:#0891b2; --brand4:#22d3ee;
+    --ink:#161a23; --sub:#5b6472; --faint:#8a93a3; --line:#e9ebf2;
+    --bg:#f7f8fc; --card:#ffffff; --ok:#10b981; --warn:#f59e0b; --bad:#ef4444;
+    --shadow-s:0 4px 14px rgba(30,40,90,.06);
+    --shadow-m:0 16px 40px rgba(30,40,90,.10);
+    --grad:linear-gradient(120deg,var(--brand1),var(--brand2) 48%,var(--brand3));
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;
+    color:var(--ink);background:var(--bg);line-height:1.75;-webkit-font-smoothing:antialiased}
+  a{color:var(--brand1);text-decoration:none}
+  code{background:#eef0ff;color:#1d4ed8;padding:2px 7px;border-radius:6px;font-size:.9em;
+    overflow-wrap:anywhere;word-break:break-word;white-space:normal}
+  .nav{position:sticky;top:0;z-index:50;backdrop-filter:saturate(180%) blur(14px);
+    background:rgba(255,255,255,.72);border-bottom:1px solid var(--line);
+    display:flex;align-items:center;gap:6px;padding:10px 22px;flex-wrap:wrap}
+  .nav .logo{font-weight:800;font-size:15px;display:flex;align-items:center;gap:8px;margin-right:8px;color:var(--ink)}
+  .nav .logo .dot{width:22px;height:22px;border-radius:7px;background:var(--grad);
+    box-shadow:0 4px 10px rgba(37,99,235,.4)}
+  .nav a{color:var(--sub);font-size:13.5px;padding:6px 12px;border-radius:8px;transition:.2s}
+  .nav a:hover{background:#eef0ff;color:var(--brand1)}
+  .nav .ver{margin-left:auto;font-size:12px;color:var(--faint);border:1px solid var(--line);
+    padding:4px 10px;border-radius:999px}
+  @media(max-width:640px){
+    .nav{flex-wrap:nowrap;overflow-x:auto;-webkit-overflow-scrolling:touch;padding:10px 14px}
+    .nav .logo,.nav a{flex:none;white-space:nowrap}
+    .nav .ver{display:none}
+    .nav::-webkit-scrollbar{display:none}
+  }
+  .hero{position:relative;overflow:hidden;color:#fff;text-align:center;
+    background:radial-gradient(1200px 500px at 50% -10%,rgba(34,211,238,.35),transparent 60%),
+              radial-gradient(900px 400px at 85% 20%,rgba(124,58,237,.45),transparent 60%),
+              linear-gradient(135deg,#1d4ed8,#6d28d9 55%,#0e7490);
+    padding:96px 22px 104px}
+  .hero::before{content:"";position:absolute;inset:0;opacity:.16;
+    background-image:linear-gradient(rgba(255,255,255,.5) 1px,transparent 1px),
+                     linear-gradient(90deg,rgba(255,255,255,.5) 1px,transparent 1px);
+    background-size:46px 46px;mask-image:radial-gradient(circle at 50% 30%,#000,transparent 75%)}
+  .hero>*{position:relative}
+  .hero .badge{display:inline-block;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.4);
+    padding:7px 16px;border-radius:999px;font-size:13px;letter-spacing:1px;margin-bottom:22px;
+    backdrop-filter:blur(4px)}
+  .hero h1{font-size:clamp(34px,5.5vw,56px);line-height:1.15;font-weight:900;letter-spacing:-.5px;
+    text-shadow:0 6px 30px rgba(0,0,0,.25)}
+  .hero p{max-width:680px;margin:18px auto 0;font-size:18px;opacity:.95}
+  .hero .stamp{margin-top:34px;display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+  .hero .stamp span{background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.32);
+    border-radius:12px;padding:9px 16px;font-size:13.5px;backdrop-filter:blur(4px)}
+  .hi{opacity:0;transform:translateY(26px);animation:hi 1s cubic-bezier(.22,.61,.36,1) forwards}
+  .hi.d1{animation-delay:.1s}.hi.d2{animation-delay:.26s}.hi.d3{animation-delay:.42s}.hi.d4{animation-delay:.6s}.hi.d5{animation-delay:.78s}
+  @keyframes hi{to{opacity:1;transform:none}}
+  .cta{margin-top:40px;display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+  .btn-download{display:inline-block;background:#fff;color:#1d4ed8;font-weight:800;font-size:16px;
+    padding:14px 30px;border-radius:14px;box-shadow:0 12px 30px rgba(0,0,0,.28);transition:.22s}
+  .btn-download:hover{transform:translateY(-2px);box-shadow:0 18px 38px rgba(0,0,0,.34)}
+  .btn-ghost{display:inline-block;background:rgba(255,255,255,.14);color:#fff;font-weight:700;font-size:16px;
+    padding:14px 24px;border-radius:14px;border:1px solid rgba(255,255,255,.35)}
+  .btn-ghost:hover{background:rgba(255,255,255,.22);color:#fff}
+  .nav .nav-dl{background:var(--grad);color:#fff;font-weight:800;font-size:13.5px;padding:7px 15px;
+    border-radius:9px;box-shadow:0 6px 14px rgba(37,99,235,.32);margin-left:8px;transition:.2s}
+  .nav .nav-dl:hover{color:#fff;transform:translateY(-1px)}
+  @media(max-width:640px){.nav .nav-dl{margin-left:0}}
+  .wrap{max-width:1040px;margin:0 auto;padding:0 22px 90px}
+  section{margin-top:74px;scroll-margin-top:76px}
+  .sec-head{display:flex;align-items:center;gap:14px;margin-bottom:24px}
+  .sec-num{width:40px;height:40px;border-radius:12px;flex:0 0 auto;background:var(--grad);color:#fff;
+    display:flex;align-items:center;justify-content:center;font-weight:800;font-size:18px;
+    box-shadow:0 8px 18px rgba(37,99,235,.32)}
+  .sec-head h2{font-size:26px;font-weight:800;letter-spacing:-.3px}
+  .sec-head .en{color:var(--faint);font-size:12.5px;font-weight:600;margin-left:auto;letter-spacing:1.5px}
+  .lead{color:var(--sub);font-size:16px;margin-bottom:24px;max-width:760px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow-s);
+    transition:transform .3s cubic-bezier(.22,.61,.36,1),box-shadow .3s}
+  .card:hover{transform:translateY(-4px);box-shadow:var(--shadow-m)}
+  .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:64px}
+  .stat{padding:26px 18px;text-align:center}
+  .stat .num{font-size:34px;font-weight:900;background:var(--grad);-webkit-background-clip:text;
+    background-clip:text;color:transparent;line-height:1}
+  .stat .lab{font-size:13px;color:var(--sub);margin-top:8px}
+  @media(max-width:720px){.stats{grid-template-columns:repeat(2,1fr)}}
+  .compare{display:grid;grid-template-columns:1fr 56px 1fr;align-items:stretch}
+  .compare .col{padding:26px}
+  .compare h3{font-size:17px;margin-bottom:16px}
+  .compare .before h3{color:var(--bad)} .compare .after h3{color:var(--ok)}
+  .compare li{margin:8px 0 8px 18px;color:var(--sub);font-size:14.5px}
+  .arrow{display:flex;align-items:center;justify-content:center;color:var(--brand2);font-weight:800;font-size:28px}
+  @media(max-width:680px){.compare{grid-template-columns:1fr}.arrow{transform:rotate(90deg);margin:8px 0}}
+  .flow{padding:30px 24px;display:flex;align-items:stretch;justify-content:center;gap:6px;flex-wrap:wrap}
+  .node{background:#fbfbff;border:1px solid var(--line);border-radius:16px;padding:18px 20px;max-width:250px;flex:1 1 210px;min-width:0}
+  .node .tag{font-size:12px;font-weight:800;color:var(--brand1);margin-bottom:8px}
+  .node h4{font-size:16px;margin-bottom:8px}
+  .node p{font-size:13.5px;color:var(--sub)}
+  .conn{display:flex;align-items:center;color:var(--brand2);font-weight:800;font-size:22px;padding:0 4px}
+  @media(max-width:680px){.conn{transform:rotate(90deg)}}
+  .feat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  @media(max-width:820px){.feat-grid{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:520px){.feat-grid{grid-template-columns:1fr}}
+  .feat{padding:24px 22px}
+  .feat .ic{width:50px;height:50px;border-radius:14px;display:flex;align-items:center;justify-content:center;
+    background:linear-gradient(135deg,#eef0ff,#f3ecff);margin-bottom:16px;font-size:22px}
+  .feat h4{font-size:16.5px;margin-bottom:7px} .feat p{font-size:13.5px;color:var(--sub)}
+  .wl{display:grid;grid-template-columns:340px 1fr;gap:24px;align-items:start}
+  @media(max-width:760px){.wl{grid-template-columns:1fr}}
+  .mock{background:#fff;border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow-m);overflow:hidden}
+  .mock .mh{background:var(--grad);color:#fff;padding:13px 15px;font-weight:700;font-size:14px}
+  .mock .mb{padding:14px}
+  .mock input,.mock .fake-btn{height:32px;border-radius:8px;font-size:12px}
+  .mock .bar{display:flex;gap:8px;margin-bottom:10px}
+  .mock input{flex:1;border:1px solid var(--line);padding:0 8px;color:var(--sub)}
+  .mock .fake-btn{border:none;background:#2563eb;color:#fff;padding:0 12px;font-weight:700}
+  .mock table{width:100%;border-collapse:collapse;font-size:12px}
+  .mock th,.mock td{text-align:left;padding:7px 4px;border-bottom:1px solid var(--line);white-space:nowrap}
+  .mock th{color:var(--sub);font-weight:600}
+  .pager{display:flex;gap:6px;align-items:center;justify-content:flex-end;margin-top:10px;font-size:12px;color:var(--sub);flex-wrap:wrap}
+  .pager b{border:1px solid #2563eb;color:#2563eb;border-radius:4px;min-width:22px;text-align:center;padding:1px 4px}
+  .fmt{background:#fff;border:1px solid var(--line);border-radius:16px;padding:20px 22px}
+  .fmt table{width:100%;border-collapse:collapse;font-size:14px}
+  .fmt th,.fmt td{text-align:left;padding:11px 8px;border-bottom:1px solid var(--line)}
+  .fmt th{color:var(--sub);font-weight:600}
+  .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+  @media(max-width:820px){.steps{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:480px){.steps{grid-template-columns:1fr}}
+  .step{padding:24px 18px;text-align:center}
+  .step .n{width:44px;height:44px;border-radius:50%;margin:0 auto 14px;background:var(--grad);color:#fff;
+    font-weight:800;display:flex;align-items:center;justify-content:center;font-size:19px;
+    box-shadow:0 8px 18px rgba(37,99,235,.3)}
+  .step h4{font-size:15.5px;margin-bottom:7px} .step p{font-size:13px;color:var(--sub)}
+  table.cmp{width:100%;border-collapse:collapse;font-size:14px}
+  table.cmp th,table.cmp td{padding:13px 15px;border-bottom:1px solid var(--line);text-align:left}
+  table.cmp thead{background:var(--grad);color:#fff}
+  table.cmp tbody tr:nth-child(even){background:#fafbff}
+  .pill{display:inline-block;padding:4px 11px;border-radius:999px;font-size:12px;font-weight:700}
+  .pill.ok{background:#e7faf1;color:var(--ok)} .pill.warn{background:#fff4e0;color:#b45309}
+  .tip{background:#fff7ed;border:1px solid #fed7aa;color:#9a3412;border-radius:14px;padding:15px 18px;font-size:13.5px;margin-top:18px}
+  .note{background:#f0f6ff;border:1px solid #cfe0ff;color:#1e40af;border-radius:14px;padding:15px 18px;font-size:13.5px;margin-top:18px}
+  .foot{margin-top:70px;padding-top:28px;border-top:1px solid var(--line);color:var(--sub);font-size:13px;text-align:center;line-height:2}
+  .foot b{color:var(--ink)}
+  .to-top{position:fixed;right:22px;bottom:26px;z-index:60;width:46px;height:46px;border:none;border-radius:50%;
+    background:var(--grad);color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;
+    box-shadow:0 8px 22px rgba(37,99,235,.4);opacity:0;visibility:hidden;transform:translateY(12px);
+    transition:opacity .3s,transform .3s,visibility .3s}
+  .to-top.show{opacity:1;visibility:visible;transform:none}
+  .reveal{opacity:0;transform:translateY(42px);transition:opacity .8s cubic-bezier(.22,.61,.36,1),transform .8s cubic-bezier(.22,.61,.36,1)}
+  .reveal.in{opacity:1;transform:none}
+  @media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none}.hi{animation:none;opacity:1;transform:none}}
+</style>
 </head>
 <body>
-  <header class="site-header">
-    <div class="shell header-shell">
-      <a class="brand" href="#latest" aria-label="ZJAI-PLUGIN 发布中心首页">
-        <span class="mark" aria-hidden="true">Z</span>
-        <span class="brand-name">ZJAI-PLUGIN</span>
-        <span class="channel">浏览器插件发布中心</span>
-      </a>
-      <div class="theme-switch" role="group" aria-label="页面主题">
-        <button class="theme-option" type="button" data-theme-value="light" aria-pressed="true">浅色</button>
-        <button class="theme-option" type="button" data-theme-value="dark" aria-pressed="false">深色</button>
-      </div>
-    </div>
-  </header>
+<nav class="nav">
+  <div class="logo"><span class="dot"></span>ZJAI</div>
+  <a href="#problem">问题</a>
+  <a href="#how">原理</a>
+  <a href="#benefits">能力</a>
+  <a href="#sent">已发查询</a>
+  <a href="#install">安装</a>
+  <a href="download-archive.html">历史版本</a>
+  <a href="https://github.com/songhonglu/zjai-browser-plugin-releases/releases/download/v3.4.15/zjai-browser-plugin-v3.4.15.zip" class="nav-dl">下载</a>
+  <span class="ver">v3.4.15</span>
+</nav>
 
-  <main>
-    <section class="hero" id="latest" aria-labelledby="latest-title">
-      <div class="shell">
-        <div class="hero-card">
-          <div class="hero-top">
-            <div>
-              <p class="eyebrow">Latest release</p>
-              <h1 id="latest-title">v3.4.15 已发布</h1>
-              <p class="summary">首页入口改为<span class="keep-together">扇形菜单</span>，并新增<span class="keep-together">已发查询</span>，支持关键词、分页和页码跳转。</p>
-            </div>
-            <span class="release-chip">最新稳定版</span>
-          </div>
-          <div class="hero-bottom">
-            <p class="released">发布时间：2026-10-10　安装包：ZIP</p>
-            <div class="actions">
-              <a class="button" href="https://github.com/songhonglu/zjai-browser-plugin-releases/releases/download/v3.4.15/zjai-browser-plugin-v3.4.15.zip">下载 v3.4.15</a>
-              <a class="button secondary" href="#releases">查看已发布版本</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+<header class="hero">
+  <div class="badge hi d1">浏览器扩展 · 致远协同提效</div>
+  <h1 class="hi d2">把重复待办，收成一次处理</h1>
+  <p class="hi d3">挂在已登录的致远协同首页。悬浮入口展开批量处理、工时签卡、提需求和<span style="white-space:nowrap">已发查询</span>，不用改 OA 服务器。</p>
+  <div class="stamp hi d4">
+    <span>已登录页面生效</span>
+    <span>不改服务器代码</span>
+    <span>已发列表可分页跳转</span>
+  </div>
+  <div class="cta hi d5">
+    <a class="btn-download" href="https://github.com/songhonglu/zjai-browser-plugin-releases/releases/download/v3.4.15/zjai-browser-plugin-v3.4.15.zip">下载扩展 v3.4.15</a>
+    <a class="btn-ghost" href="download-archive.html">查看历史下载页</a>
+  </div>
+</header>
 
-    <div class="shell content">
-      <section class="card" aria-labelledby="highlights-title">
-        <h2 id="highlights-title">本次更新</h2>
-        <ul class="feature-list">
-          <li><strong><span class="keep-together">扇形入口</span></strong><br>悬浮主入口后展开批量处理、工时签卡、提需求和已发查询。</li>
-          <li><strong><span class="keep-together">已发查询</span></strong><br>按标题关键词查询当前账号已发协同，留空则查最近已发。</li>
-          <li><strong><span class="keep-together">分页跳转</span></strong><br>支持总条数、页码、上一页/下一页、每页条数，输入页码后失焦即跳转。</li>
-          <li><strong><span class="keep-together">已发列表</span></strong><br>显示标题、当前待办人和发起时间。</li>
+<div class="wrap">
+  <div class="stats reveal">
+    <div class="card stat"><div class="num">4 个</div><div class="lab">首页扇形入口</div></div>
+    <div class="card stat"><div class="num">6 类</div><div class="lab">可批量处理的单据</div></div>
+    <div class="card stat"><div class="num">4 档</div><div class="lab">已发列表每页条数</div></div>
+    <div class="card stat"><div class="num">v3.4.15</div><div class="lab">当前公开发布版本</div></div>
+  </div>
+
+  <section id="problem">
+    <div class="sec-head reveal"><div class="sec-num">1</div><h2>它解决什么问题</h2><div class="en">PROBLEM</div></div>
+    <p class="lead reveal">协同首页上，同类待办要逐条打开，已发记录要靠系统列表来回翻。ZJAI 把这些高频动作收进当前页面的悬浮入口。</p>
+    <div class="card compare reveal">
+      <div class="col before">
+        <h3>原来：入口分散</h3>
+        <ul>
+          <li>周计划、工时单、项目周报等要一条条点开处理。</li>
+          <li>查自己发出的协同，只能在系统已发列表里翻。</li>
+          <li>工时核对和提需求不在同一个入口。</li>
         </ul>
-      </section>
-
-      <section class="card" aria-labelledby="install-title">
-        <h2 id="install-title">安装步骤</h2>
-        <ol class="steps">
-          <li>下载<span class="keep-together">最新版 ZIP 文件</span>并解压到<span class="keep-together">本地文件夹</span>。</li>
-          <li>在 Chrome 或 Edge <span class="keep-together">扩展管理页</span>开启“<span class="keep-together">开发者模式</span>”。</li>
-          <li>选择“加载已解压的<span class="keep-together">扩展程序</span>”，并选中包含 <code>manifest.json</code> 的<span class="keep-together">文件夹</span>。</li>
-        </ol>
-        <p class="notice">升级前建议在<span class="keep-together">扩展管理页</span>移除旧的<span class="keep-together">已解压版本</span>，再加载<span class="keep-together">新版本目录</span>。</p>
-      </section>
-
-      <section class="card" id="releases" aria-labelledby="releases-title">
-        <h2 id="releases-title">已发布版本</h2>
-        <div class="version-list">
-          <article class="version"><div><strong>v3.4.15</strong><br><time datetime="2026-10-10">2026-10-10</time><br><span class="download-count" data-release-tag="v3.4.15" data-asset-name="zjai-browser-plugin-v3.4.15.zip" aria-live="polite">下载次数：读取中</span></div><p><span class="keep-together">扇形入口</span>与<span class="keep-together">已发查询</span>，支持分页和页码跳转。</p><a class="download" href="https://github.com/songhonglu/zjai-browser-plugin-releases/releases/download/v3.4.15/zjai-browser-plugin-v3.4.15.zip">下载安装包</a></article>
-          <article class="version"><div><strong>v3.4.14</strong><br><time datetime="2026-09-01">2026-09-01</time><br><span class="download-count" data-release-tag="v3.4.14" data-asset-name="zjai-browser-plugin-v3.4.14.zip" aria-live="polite">下载次数：读取中</span></div><p><span class="keep-together">五类批量待办</span>取消部门/区域白名单，并按来源类型校验。</p><a class="download" href="https://github.com/songhonglu/zjai-browser-plugin-releases/releases/download/v3.4.14/zjai-browser-plugin-v3.4.14.zip">下载安装包</a></article>
-          <article class="version"><div><strong>v3.4.13</strong><br><time datetime="2026-08-31">2026-08-31</time><br><span class="download-count" data-release-tag="v3.4.13" data-asset-name="zjai-browser-plugin-v3.4.13.zip" aria-live="polite">下载次数：读取中</span></div><p><span class="keep-together">项目周报批量处理</span>支持<span class="keep-together">【杭州】</span>、<span class="keep-together">【杭州区】</span>。</p><a class="download" href="https://github.com/songhonglu/zjai-browser-plugin-releases/releases/download/v3.4.13/zjai-browser-plugin-v3.4.13.zip">下载安装包</a></article>
-          <article class="version"><div><strong>v3.4.12</strong><br><time datetime="2026-08-28">2026-08-28</time><br><span class="download-count" data-release-tag="v3.4.12" data-asset-name="zjai-browser-plugin-v3.4.12.zip" aria-live="polite">下载次数：读取中</span></div><p><span class="keep-together">浙江区域代码扫描</span>、<span class="delay-emphasis">延期</span>状态高亮。</p><a class="download" href="https://github.com/songhonglu/zjai-browser-plugin-releases/releases/download/v3.4.12/zjai-browser-plugin-v3.4.12.zip">下载安装包</a></article>
-          <article class="version"><div><strong>v3.4.11</strong><br><time datetime="2026-08-20">2026-08-20</time><br><span class="download-count" data-release-tag="v3.4.11" data-asset-name="zjai-browser-plugin-v3.4.11.zip" aria-live="polite">下载次数：读取中</span></div><p><span class="keep-together">自定义入口图标</span>、<span class="keep-together">手动裁剪</span>、<span class="keep-together">最近五次记录</span>。</p><a class="download" href="https://github.com/songhonglu/zjai-browser-plugin-releases/releases/download/v3.4.11/zjai-browser-plugin-v3.4.11.zip">下载安装包</a></article>
-          <article class="version"><div><strong>v3.4.10</strong><br><time datetime="2026-08-19">2026-08-19</time><br><span class="download-count" data-release-tag="v3.4.10" data-asset-name="zjai-browser-plugin-v3.4.10.zip" aria-live="polite">下载次数：读取中</span></div><p><span class="keep-together">项目检查</span>兼容<span class="keep-together">无前缀详情页</span>和<span class="keep-together">同源 iframe</span>。</p><a class="download" href="https://github.com/songhonglu/zjai-browser-plugin-releases/releases/download/v3.4.10/zjai-browser-plugin-v3.4.10.zip">下载安装包</a></article>
-          <article class="version"><div><strong>v3.4.9</strong><br><time datetime="2026-08-18">2026-08-18</time><br><span class="download-count" data-release-tag="v3.4.9" data-asset-name="zjai-browser-plugin-v3.4.9.zip" aria-live="polite">下载次数：读取中</span></div><p>首页新增<span class="keep-together">工时签卡</span>入口，复用既有查询与<span class="keep-together">处理链路</span>。</p><a class="download" href="https://github.com/songhonglu/zjai-browser-plugin-releases/releases/download/v3.4.9/zjai-browser-plugin-v3.4.9.zip">下载安装包</a></article>
-          <article class="version"><div><strong>v3.4.8</strong><br><time datetime="2026-08-13">2026-08-13</time><br><span class="download-count" data-release-tag="v3.4.8" data-asset-name="zjai-browser-plugin-v3.4.8.zip" aria-live="polite">下载次数：读取中</span></div><p><span class="keep-together">批量处理</span>、工时、<span class="keep-together">代码扫描</span>、<span class="keep-together">问题处理</span>与<span class="keep-together">项目移交</span>等功能基线。</p><a class="download" href="https://github.com/songhonglu/zjai-browser-plugin-releases/releases/download/v3.4.8/zjai-browser-plugin-v3.4.8.zip">下载安装包</a></article>
-        </div>
-      </section>
+      </div>
+      <div class="arrow">→</div>
+      <div class="col after">
+        <h3>现在：一个悬浮入口</h3>
+        <ul>
+          <li>扇形入口里直接进入批量处理、工时签卡、提需求、已发查询。</li>
+          <li>已发查询按标题关键词分页，能跳到指定页。</li>
+          <li>列表给出标题、当前待办人和发起时间。</li>
+        </ul>
+      </div>
     </div>
-  </main>
+    <div class="note reveal">适用页面是已登录的 <b>xt.seeyon.com</b>。扩展使用当前账号自己的协同数据，不另外建账号。</div>
+  </section>
 
-  <footer>
-    <div class="shell">ZJAI-PLUGIN · 公开安装包</div>
-  </footer>
-  <script>
-    (() => {
-      const THEME_KEY = 'zjai-release-theme';
-      const themeOptions = [...document.querySelectorAll('.theme-option[data-theme-value]')];
-      const themeColor = document.querySelector('#theme-color');
-      const storedTheme = () => {
-        try {
-          return localStorage.getItem(THEME_KEY) === 'dark' ? 'dark' : 'light';
-        } catch {
-          return 'light';
-        }
-      };
-      const applyTheme = (theme, persist = true) => {
-        theme = theme === 'dark' ? 'dark' : 'light';
-        document.documentElement.dataset.theme = theme;
-        themeOptions.forEach((option) => {
-          option.setAttribute('aria-pressed', String(option.dataset.themeValue === theme));
-        });
-        themeColor?.setAttribute('content', theme === 'dark' ? '#070a12' : '#f7f7f2');
-        if (persist) {
-          try {
-            localStorage.setItem(THEME_KEY, theme);
-          } catch {}
-        }
-      };
-      const setTheme = (theme) => {
-        const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-        if (!reduceMotion && typeof document.startViewTransition === 'function') {
-          document.startViewTransition(() => applyTheme(theme));
-        } else {
-          applyTheme(theme);
-        }
-      };
+  <section id="how">
+    <div class="sec-head reveal"><div class="sec-num">2</div><h2>它怎么做到的</h2><div class="en">HOW IT WORKS</div></div>
+    <p class="lead reveal">扩展注入已登录的协同页面。你点悬浮入口后，它用当前登录态调用协同接口，把结果画在页面自己的面板里。</p>
+    <div class="card flow reveal">
+      <div class="node">
+        <div class="tag">① 打开首页</div>
+        <h4>已登录协同</h4>
+        <p>在 xt.seeyon.com 首页看到 ZJAI 悬浮球。</p>
+      </div>
+      <div class="conn">→</div>
+      <div class="node" style="border-color:#ddd6fe;background:#f6f1ff">
+        <div class="tag" style="color:#7c3aed">② 选择入口</div>
+        <h4>扇形菜单</h4>
+        <p>批量处理、工时签卡、提需求、已发查询。</p>
+      </div>
+      <div class="conn">→</div>
+      <div class="node" style="border-color:#bbf7d0;background:#f0fdf6">
+        <div class="tag" style="color:#059669">③ 当前页完成</div>
+        <h4>查询或处理</h4>
+        <p>结果留在当前页，详情仍打开原来的协同页面。</p>
+      </div>
+    </div>
+    <div class="note reveal">不改 OA 服务器上的业务代码。卸载或停用扩展后，协同本身的菜单和列表仍按原来的方式使用。</div>
+  </section>
 
-      applyTheme(storedTheme(), false);
-      themeOptions.forEach((option) => option.addEventListener('click', () => setTheme(option.dataset.themeValue)));
+  <section id="benefits">
+    <div class="sec-head reveal"><div class="sec-num">3</div><h2>带来什么便利</h2><div class="en">BENEFITS</div></div>
+    <div class="feat-grid">
+      <div class="card feat reveal"><div class="ic">◎</div><h4>扇形入口</h4><p>鼠标移到主入口，四个功能绕主球展开。移开后收回，不挡页面。</p></div>
+      <div class="card feat reveal"><div class="ic">☰</div><h4>批量处理</h4><p>覆盖周计划、工时单、项目周报、绩效考核、前置评估、客开作业单。</p></div>
+      <div class="card feat reveal"><div class="ic">⌕</div><h4>已发查询</h4><p>按标题关键词查当前账号已发协同。留空则查最近已发。</p></div>
+      <div class="card feat reveal"><div class="ic">◷</div><h4>工时签卡</h4><p>从首页直接查看本人最近工时和签卡情况。</p></div>
+      <div class="card feat reveal"><div class="ic">✎</div><h4>提需求</h4><p>在扩展页填写需求、联系人和在线文档，提交到既有钉钉机器人。</p></div>
+      <div class="card feat reveal"><div class="ic">↓</div><h4>历史版本仍可下</h4><p>v3.4.8 到 v3.4.15 的安装包和下载次数都留在原下载页。</p></div>
+    </div>
+  </section>
 
-      const COUNTER_API = 'https://zjai-download-counter.songhonglulove.workers.dev';
-      const counters = [...document.querySelectorAll('.download-count[data-release-tag][data-asset-name]')];
-      const unavailable = () => counters.forEach((counter) => { counter.textContent = '下载次数：暂不可用'; });
-      const setCount = (tag, asset, count) => {
-        const counter = counters.find((item) => item.dataset.releaseTag === tag && item.dataset.assetName === asset);
-        if (counter) counter.textContent = Number.isInteger(count) ? `下载次数：${count}` : '下载次数：暂不可用';
-      };
-      const readCounts = (url) => fetch(url, { cache: 'no-store' })
-        .then((response) => response.ok ? response.json() : Promise.reject(new Error('release API unavailable')))
-        .then(({ counts }) => counters.forEach((counter) => setCount(
-          counter.dataset.releaseTag,
-          counter.dataset.assetName,
-          counts?.[counter.dataset.releaseTag]?.[counter.dataset.assetName]
-        )));
+  <section id="sent">
+    <div class="sec-head reveal"><div class="sec-num">4</div><h2>已发查询怎么用</h2><div class="en">SENT LIST</div></div>
+    <p class="lead reveal">已发列表面向当前登录人。它不显示流程节点名，因为已发接口返回的是发起事项自己的节点，不能代表当前待办人所在节点。</p>
+    <div class="wl">
+      <div class="mock reveal">
+        <div class="mh">已发查询 · 4138 条</div>
+        <div class="mb">
+          <div class="bar"><input value="标题关键词，留空查最近已发" readonly><span class="fake-btn">查询</span></div>
+          <table>
+            <thead><tr><th>标题</th><th>当前待办人</th><th>发起时间</th></tr></thead>
+            <tbody>
+              <tr><td>项目作业签卡单…</td><td>已结束</td><td>09-29 09:02</td></tr>
+              <tr><td>交付月度绩效考核…</td><td>宋汉望</td><td>09-29 09:00</td></tr>
+              <tr><td>顾问工时登记…</td><td>已结束</td><td>09-28 19:02</td></tr>
+            </tbody>
+          </table>
+          <div class="pager"><span>共 4138 条</span><span>&lt;</span><span>1</span><b>2</b><span>3</span><span>…</span><span>83</span><span>&gt;</span><span>50 条/页</span></div>
+        </div>
+      </div>
+      <div class="fmt reveal">
+        <table>
+          <thead><tr><th>操作</th><th>结果</th></tr></thead>
+          <tbody>
+            <tr><td>关键词留空</td><td>查最近已发</td></tr>
+            <tr><td>输入标题关键词</td><td>按标题筛选当前账号的已发协同</td></tr>
+            <tr><td>点页码、上一页、下一页</td><td>跳到对应页</td></tr>
+            <tr><td>选择 10 / 20 / 50 / 100 条</td><td>改变每页条数，并回到第 1 页</td></tr>
+            <tr><td>页码框输入后鼠标离开</td><td>不用按回车，直接跳转</td></tr>
+          </tbody>
+        </table>
+        <div class="tip">点标题会用已发详情来源打开协同。当前待办人在流程结束时显示「已结束」。</div>
+      </div>
+    </div>
+  </section>
 
-      readCounts(`${COUNTER_API}/counts`)
-        .catch(() => readCounts('downloads.json'))
-        .catch(unavailable);
+  <section id="install">
+    <div class="sec-head reveal"><div class="sec-num">5</div><h2>30 秒安装</h2><div class="en">INSTALL</div></div>
+    <div class="card reveal" style="padding:22px 24px;display:flex;align-items:center;gap:18px;flex-wrap:wrap;margin-bottom:26px">
+      <div style="flex:1 1 280px">
+        <strong style="font-size:16px">先下载扩展压缩包</strong>
+        <p style="color:var(--sub);font-size:14px;margin-top:6px">下载 <code>zjai-browser-plugin-v3.4.15.zip</code>，解压后选中含 <code>manifest.json</code> 的文件夹。</p>
+      </div>
+      <a class="btn-download" href="https://github.com/songhonglu/zjai-browser-plugin-releases/releases/download/v3.4.15/zjai-browser-plugin-v3.4.15.zip">下载 v3.4.15 压缩包</a>
+    </div>
+    <div class="steps">
+      <div class="card step reveal"><div class="n">1</div><h4>打开扩展页</h4><p>Chrome 输入 <code>chrome://extensions</code>，Edge 输入 <code>edge://extensions</code></p></div>
+      <div class="card step reveal"><div class="n">2</div><h4>开启开发者模式</h4><p>打开页面右上角的「开发者模式」开关</p></div>
+      <div class="card step reveal"><div class="n">3</div><h4>加载文件夹</h4><p>选择「加载已解压的扩展程序」，选中解压后的文件夹</p></div>
+      <div class="card step reveal"><div class="n">4</div><h4>刷新协同</h4><p>刷新已登录的 OA 首页，悬浮主入口即可使用</p></div>
+    </div>
+    <div class="note reveal">升级时建议先移除旧的已解压版本，再加载新目录。只改了脚本时，也可以在扩展卡片上点刷新后，再刷新 OA 页面。</div>
+  </section>
 
-      [...document.querySelectorAll('a[href]')].forEach((link) => {
-        const match = link.href.match(/\/releases\/download\/(v\d+\.\d+\.\d+)\/([^/?#]+)$/);
-        if (!match) return;
-        const [, tag, asset] = match;
-        link.addEventListener('click', async (event) => {
-          if (event.defaultPrevented || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
-          event.preventDefault();
-          try {
-            const response = await fetch(`${COUNTER_API}/download`, {
-              method: 'POST',
-              headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify({ tag, asset })
-            });
-            if (!response.ok) throw new Error('counter API unavailable');
-            const result = await response.json();
-            setCount(tag, asset, result.count);
-            setTimeout(() => window.location.assign(result.downloadUrl || link.href), 150);
-          } catch {
-            window.location.assign(link.href);
-          }
-        });
-      });
-    })();
-  </script>
+  <section id="versions">
+    <div class="sec-head reveal"><div class="sec-num">6</div><h2>版本与兼容</h2><div class="en">COMPATIBILITY</div></div>
+    <div class="card reveal" style="padding:6px 6px 0">
+      <table class="cmp">
+        <thead><tr><th>环境</th><th>状态</th><th>说明</th></tr></thead>
+        <tbody>
+          <tr><td>Chrome / Edge</td><td><span class="pill ok">当前发布目标</span></td><td>用开发者模式加载已解压目录</td></tr>
+          <tr><td>xt.seeyon.com 已登录首页</td><td><span class="pill ok">可用</span></td><td>悬浮入口和已发查询都在这个页面</td></tr>
+          <tr><td>Firefox / Safari</td><td><span class="pill warn">不在本版范围</span></td><td>安装包按 Chromium 扩展发布</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="note reveal">v3.4.8 至 v3.4.15 的安装包、更新说明和下载次数仍在 <a href="download-archive.html">原下载页</a>，没有删除。</div>
+  </section>
+
+  <div class="foot">
+    <p><b>ZJAI</b> · 致远协同提效扩展说明</p>
+    <p>当前版本 v3.4.15 · 首页扇形入口 · 已发查询支持分页和失焦跳转</p>
+    <p style="margin-top:10px"><a href="https://github.com/songhonglu/zjai-browser-plugin-releases/releases/download/v3.4.15/zjai-browser-plugin-v3.4.15.zip">下载 zjai-browser-plugin-v3.4.15.zip</a> · <a href="download-archive.html">原下载页存档</a></p>
+  </div>
+</div>
+<button class="to-top" id="toTop" title="回到顶部" aria-label="回到顶部">↑</button>
+<script>
+(function () {
+  var items = document.querySelectorAll('.reveal');
+  if (!('IntersectionObserver' in window)) {
+    items.forEach(function (item) { item.classList.add('in'); });
+    return;
+  }
+  var observer = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (!entry.isIntersecting) return;
+      entry.target.classList.add('in');
+      observer.unobserve(entry.target);
+    });
+  }, { threshold: 0.14, rootMargin: '0px 0px -40px 0px' });
+  items.forEach(function (item) { observer.observe(item); });
+})();
+(function () {
+  var button = document.getElementById('toTop');
+  if (!button) return;
+  function onScroll() {
+    if (window.scrollY > 400) button.classList.add('show');
+    else button.classList.remove('show');
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  button.addEventListener('click', function () { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+  onScroll();
+})();
+</script>
 </body>
 </html>

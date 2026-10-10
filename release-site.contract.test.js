@@ -4,7 +4,8 @@ const fs = require('node:fs');
 const path = require('node:path');
 
 const root = __dirname;
-const index = fs.readFileSync(path.join(root, 'index.html'), 'utf8');
+const index = fs.readFileSync(path.join(root, 'download-archive.html'), 'utf8');
+const promo = fs.readFileSync(path.join(root, 'index.html'), 'utf8');
 const changelog = fs.readFileSync(path.join(root, 'CHANGELOG.md'), 'utf8');
 const downloads = JSON.parse(fs.readFileSync(path.join(root, 'downloads.json'), 'utf8'));
 const workflow = fs.readFileSync(path.join(root, '.github', 'workflows', 'refresh-download-counts.yml'), 'utf8');
@@ -75,6 +76,13 @@ assert.match(worker, /v3\.4\.14/);
 assert.match(worker, /v3\.4\.15/);
 assert.match(worker, /POST/);
 assert.match(worker, /\(request\.method === 'POST' \|\| request\.method === 'OPTIONS'\) && !allowedOrigin\(request, env\)/);
+assert.match(promo, /ZJAI/);
+assert.match(promo, /把重复待办，收成一次处理/);
+assert.match(promo, /https:\/\/github\.com\/songhonglu\/zjai-browser-plugin-releases\/releases\/download\/v3\.4\.15\/zjai-browser-plugin-v3\.4\.15\.zip/);
+assert.match(promo, /download-archive\.html/, '宣传页应保留原下载页入口');
+assert.match(promo, /已发查询/);
+assert.match(promo, /扇形入口/);
+assert.doesNotMatch(promo, /v3\.4\.7\.2/);
 for (const version of versions) {
   assert.match(index, new RegExp(`data-release-tag="v${version.replaceAll('.', '\\.')}"`));
   assert.match(changelog, new RegExp(`## \\[${version.replaceAll('.', '\\.')}`));
