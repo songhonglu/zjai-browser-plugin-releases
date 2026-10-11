@@ -199,7 +199,7 @@
 <header class="hero">
   <div class="badge hi d1">浏览器扩展 · 致远协同与 CTP-Studio</div>
   <h1 class="hi d2">把协同里的重复事，放到手边</h1>
-  <p class="hi d3">覆盖待办批量处理、已发查询、工时签卡、周计划汇总、项目台账、项目移交、代码扫描、<span style="white-space:nowrap">工单速配</span>和<span style="white-space:nowrap">冲突检测</span>。不改 OA 服务器。</p>
+  <p class="hi d3">覆盖待办批量处理、已发和已办查询、工时签卡、周计划汇总、项目台账、项目移交、代码扫描、<span style="white-space:nowrap">工单速配</span>和<span style="white-space:nowrap">冲突检测</span>。不改 OA 服务器。</p>
   <div class="stamp hi d4">
     <span>按当前登录账号取数</span>
     <span>不改服务器代码</span>
@@ -213,7 +213,7 @@
 
 <div class="wrap">
   <div class="stats reveal">
-    <div class="card stat"><div class="num">11 项</div><div class="lab">插件里的功能</div></div>
+    <div class="card stat"><div class="num">12 项</div><div class="lab">插件里的功能</div></div>
     <div class="card stat"><div class="num">6 类</div><div class="lab">可批量处理的单据</div></div>
     <div class="card stat"><div class="num">2 处</div><div class="lab">协同首页与 Studio</div></div>
     <div class="card stat"><div class="num">v3.4.17</div><div class="lab">当前公开发布版本</div></div>
@@ -235,7 +235,7 @@
       <div class="col after">
         <h3>现在：按页面给入口</h3>
         <ul>
-          <li>协同首页用扇形入口处理待办、工时、需求和已发。</li>
+          <li>已登录的协同首页用五色扇形入口处理待办、工时、需求、已发和已办。未登录不显示这个入口。</li>
           <li>周计划、台账、移交、工单和冲突检测留在对应业务页。</li>
           <li>代码合规扫描放在 CTP-Studio 首页。</li>
         </ul>
@@ -257,7 +257,7 @@
       <div class="node" style="border-color:#ddd6fe;background:#f6f1ff">
         <div class="tag" style="color:#7c3aed">② 选择入口</div>
         <h4>点该页入口</h4>
-        <p>首页是扇形菜单；其他页面是该功能自己的悬浮球或菜单。</p>
+        <p>首页五个菜单拼成整圆。少于 3 个菜单的页面用胶囊；工单页固定三项，也是整圆均分。</p>
       </div>
       <div class="conn">→</div>
       <div class="node" style="border-color:#bbf7d0;background:#f0fdf6">
@@ -275,6 +275,7 @@
     <div class="toc reveal">
       <a href="#feat-batch">批量处理</a>
       <a href="#feat-sent">已发查询</a>
+      <a href="#feat-done">已办查询</a>
       <a href="#feat-hours">工时签卡</a>
       <a href="#feat-request">提需求</a>
       <a href="#feat-week">周计划汇总</a>
@@ -317,7 +318,7 @@
               <tr><td>点标题</td><td>仍用新页签打开原来的待办详情</td></tr>
             </tbody>
           </table>
-          <div class="tip">每页显示多少条可以自己选。列表高度固定，翻页不会把面板撑得过高。</div>
+          <div class="tip">分页和弹层大小与已发、已办一致：总条数、页码、每页 10/20/50/100 条，以及跳页。</div>
         </div>
       </div>
     </article>
@@ -357,8 +358,44 @@
       </div>
     </article>
 
+
+    <article class="feature-block" id="feat-done">
+      <div class="sec-head reveal"><div class="sec-num">03</div><h3>已办查询</h3><div class="en">协同首页</div></div>
+      <p class="lead reveal">查的是当前账号已经办过的协同。入口在首页扇形里，和已发查询相邻。关键词可以留空，留空就看最近已办。</p>
+      <div class="wl">
+        <div class="mock reveal">
+          <div class="mh">已办查询 · 20+ 条</div>
+          <div class="mb">
+            <div class="bar"><input value="标题关键词，留空查最近已办" readonly><span class="fake-btn">查询</span></div>
+            <table>
+              <thead><tr><th>标题</th><th>当前待办人</th><th>处理时间</th></tr></thead>
+              <tbody>
+                <tr><td>项目作业签卡单…</td><td>已结束</td><td>10-08 09:14</td></tr>
+                <tr><td>交付月度绩效考核…</td><td>宋汉望</td><td>10-07 18:20</td></tr>
+                <tr><td>顾问工时登记…</td><td>已结束</td><td>10-06 11:03</td></tr>
+              </tbody>
+            </table>
+            <div class="pager"><span>共 20+ 条</span><span>&lt;</span><b>1</b><span>2</span><span>3</span><span>…</span><span>&gt;</span><span>20 条/页</span><span>跳至 1 页</span></div>
+          </div>
+        </div>
+        <div class="fmt reveal">
+          <table>
+            <thead><tr><th>操作</th><th>结果</th></tr></thead>
+            <tbody>
+              <tr><td>首页扇形点「已办查询」</td><td>打开已办面板</td></tr>
+              <tr><td>关键词留空后查询</td><td>查最近已办</td></tr>
+              <tr><td>输入标题关键词</td><td>只保留标题匹配的已办协同</td></tr>
+              <tr><td>页码、每页条数、跳页</td><td>与已发查询同一套分页</td></tr>
+              <tr><td>点标题</td><td>按已办详情打开原来的协同</td></tr>
+            </tbody>
+          </table>
+          <div class="tip">跳页输入框只留页码那么宽。没有总条数时，记录数会显示成「20+」这种开放计数。</div>
+        </div>
+      </div>
+    </article>
+
     <article class="feature-block" id="feat-hours">
-      <div class="sec-head reveal"><div class="sec-num">03</div><h3>工时签卡</h3><div class="en">协同首页 / 工时详情</div></div>
+      <div class="sec-head reveal"><div class="sec-num">04</div><h3>工时签卡</h3><div class="en">协同首页 / 工时详情</div></div>
       <p class="lead reveal">把最近一段时间的工时和签卡摊成日历，缺哪一天、补录了没有，不用再从已发标题里自己对日期。</p>
       <div class="wl">
         <div class="mock reveal">
@@ -392,7 +429,7 @@
     </article>
 
     <article class="feature-block" id="feat-request">
-      <div class="sec-head reveal"><div class="sec-num">04</div><h3>提需求</h3><div class="en">协同首页</div></div>
+      <div class="sec-head reveal"><div class="sec-num">05</div><h3>提需求</h3><div class="en">协同首页</div></div>
       <p class="lead reveal">把要做的事写成一条需求。姓名和手机号尽量从当前登录人带出来，填完直接交到钉钉。</p>
       <div class="wl">
         <div class="mock reveal">
@@ -421,7 +458,7 @@
     </article>
 
     <article class="feature-block" id="feat-week">
-      <div class="sec-head reveal"><div class="sec-num">05</div><h3>周工作计划汇总</h3><div class="en">周工作计划页</div></div>
+      <div class="sec-head reveal"><div class="sec-num">06</div><h3>周工作计划汇总</h3><div class="en">周工作计划页</div></div>
       <p class="lead reveal">周计划页上已经有上周工作明细时，扩展把它整理成上周总结。页面识别到之后可以自动写，也可以自己再算一次。</p>
       <div class="wl">
         <div class="mock reveal">
@@ -441,7 +478,7 @@
             <tbody>
               <tr><td>能看到上周总结、上周工作明细、关联上周计划</td><td>认定为周计划页，开始汇总</td></tr>
               <tr><td>明细表存在</td><td>先校验明细，再生成总结文字</td></tr>
-              <tr><td>右下「周」</td><td>手动重新汇总一次</td></tr>
+              <tr><td>悬停「自动汇总」胶囊</td><td>手动重新汇总一次</td></tr>
               <tr><td>只读的已发 / 已办周计划</td><td>不再改写页面</td></tr>
             </tbody>
           </table>
@@ -451,8 +488,8 @@
     </article>
 
     <article class="feature-block" id="feat-ledger">
-      <div class="sec-head reveal"><div class="sec-num">06</div><h3>项目台账检查</h3><div class="en">项目台账页</div></div>
-      <p class="lead reveal">打开项目台账后，检查关键字段和明细是否齐全。缺什么、哪一项延期，直接列在结果里。</p>
+      <div class="sec-head reveal"><div class="sec-num">07</div><h3>项目台账检查</h3><div class="en">项目台账页</div></div>
+      <p class="lead reveal">在项目台账页悬停「台账检查」胶囊，检查关键字段和明细是否齐全。缺什么、哪一项延期，直接列在结果里。入口可以拖动。</p>
       <div class="wl">
         <div class="mock reveal">
           <div class="mh">项目台账检查</div>
@@ -484,7 +521,7 @@
     </article>
 
     <article class="feature-block" id="feat-handover">
-      <div class="sec-head reveal"><div class="sec-num">07</div><h3>项目移交会议纪要</h3><div class="en">项目移交流程页</div></div>
+      <div class="sec-head reveal"><div class="sec-num">08</div><h3>项目移交会议纪要</h3><div class="en">项目移交流程页</div></div>
       <p class="lead reveal">从当前移交单读取字段，填进会议纪要模板，下载一份已经写好的 Word。不用离开这张流程再手工粘贴。</p>
       <div class="wl">
         <div class="mock reveal">
@@ -501,7 +538,7 @@
           <table>
             <thead><tr><th>步骤</th><th>结果</th></tr></thead>
             <tbody>
-              <tr><td>打开移交流程，点右侧入口</td><td>读出页面上的移交字段</td></tr>
+              <tr><td>悬停「项目移交」胶囊后点击</td><td>读出页面上的移交字段</td></tr>
               <tr><td>字段不对</td><td>点「重新读取」，不生成文件</td></tr>
               <tr><td>写入会议纪要</td><td>按模板生成 DOCX 并开始下载</td></tr>
               <tr><td>文件名</td><td>项目交接会议纪要-客户单位-日期</td></tr>
@@ -513,7 +550,7 @@
     </article>
 
     <article class="feature-block" id="feat-scan">
-      <div class="sec-head reveal"><div class="sec-num">08</div><h3>代码合规扫描</h3><div class="en">CTP-Studio 首页</div></div>
+      <div class="sec-head reveal"><div class="sec-num">09</div><h3>代码合规扫描</h3><div class="en">CTP-Studio 首页</div></div>
       <p class="lead reveal">在 CTP-Studio 首页扫描指定区域项目的代码记录，看哪些项目不合规。它不出现在协同首页。</p>
       <div class="wl">
         <div class="mock reveal">
@@ -542,8 +579,8 @@
     </article>
 
     <article class="feature-block" id="feat-bug">
-      <div class="sec-head reveal"><div class="sec-num">09</div><h3>工单速配</h3><div class="en">BUG 分配节点</div></div>
-      <p class="lead reveal">在 BUG 分配节点，根据历史工单找出可以接手的工程师。找到后点一下就复制姓名，不用再翻旧单。</p>
+      <div class="sec-head reveal"><div class="sec-num">10</div><h3>工单速配</h3><div class="en">BUG 分配节点</div></div>
+      <p class="lead reveal">BUG 工单页的统一球固定有三项：冲突检测、推荐工程师、历史工单。悬停后按整圆均分。找到工程师后点一下复制姓名。</p>
       <div class="wl">
         <div class="mock reveal">
           <div class="mh">工单速配</div>
@@ -560,7 +597,7 @@
               <tr><td>找到历史工单里的工程师</td><td>显示姓名，点击复制</td></tr>
               <tr><td>这条历史单没有工程师</td><td>继续往下找，不拿空值充数</td></tr>
               <tr><td>候选里没有可用姓名</td><td>提示未找到，不会随便填一个人</td></tr>
-              <tr><td>出现位置</td><td>只在 BUG 分配节点</td></tr>
+              <tr><td>出现位置</td><td>标题含 _BUG20 的工单页，和冲突检测、历史工单共用一个入口</td></tr>
             </tbody>
           </table>
           <div class="tip">推荐来自历史工单，不是自动派单。复制之后，仍由你在原表单里填写。</div>
@@ -569,8 +606,8 @@
     </article>
 
     <article class="feature-block" id="feat-conflict">
-      <div class="sec-head reveal"><div class="sec-num">10</div><h3>客开冲突雷达</h3><div class="en">BUG 工单详情</div></div>
-      <p class="lead reveal">拿当前工单的源码附件和补丁包，去对客开仓库里已经提交的 V5 代码，看路径或文件名有没有撞上。</p>
+      <div class="sec-head reveal"><div class="sec-num">11</div><h3>客开冲突雷达</h3><div class="en">BUG 工单详情</div></div>
+      <p class="lead reveal">从工单统一球的「冲突检测」进入。拿当前工单的源码附件和补丁包，去对客开仓库里已经提交的 V5 代码，看路径或文件名有没有撞上。</p>
       <div class="wl">
         <div class="mock reveal">
           <div class="mh">V5 冲突检测 · 2</div>
@@ -596,7 +633,7 @@
     </article>
 
     <article class="feature-block" id="feat-icon">
-      <div class="sec-head reveal"><div class="sec-num">11</div><h3>自定义入口图标</h3><div class="en">扩展设置页</div></div>
+      <div class="sec-head reveal"><div class="sec-num">12</div><h3>自定义入口图标</h3><div class="en">扩展设置页</div></div>
       <p class="lead reveal">悬浮球和浏览器工具栏图标可以换成自己的图。裁成圆形并确认后，刷新 OA 页面就会换成新图标。</p>
       <div class="wl">
         <div class="mock reveal">
@@ -650,7 +687,7 @@
         <thead><tr><th>环境</th><th>状态</th><th>说明</th></tr></thead>
         <tbody>
           <tr><td>Chrome / Edge</td><td><span class="pill ok">当前发布目标</span></td><td>用开发者模式加载已解压目录</td></tr>
-          <tr><td>xt.seeyon.com 已登录首页</td><td><span class="pill ok">可用</span></td><td>悬浮入口和已发查询都在这个页面</td></tr>
+          <tr><td>xt.seeyon.com 已登录首页</td><td><span class="pill ok">可用</span></td><td>已登录后才显示首页扇形；已发和已办查询都在这里</td></tr>
           <tr><td>Firefox / Safari</td><td><span class="pill warn">不在本版范围</span></td><td>安装包按 Chromium 扩展发布</td></tr>
         </tbody>
       </table>
