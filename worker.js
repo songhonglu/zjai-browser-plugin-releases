@@ -11,7 +11,8 @@ const ASSETS = {
   'v3.4.14': 'zjai-browser-plugin-v3.4.14.zip',
   'v3.4.15': 'zjai-browser-plugin-v3.4.15.zip',
   'v3.4.16': 'zjai-browser-plugin-v3.4.16.zip',
-  'v3.4.17': 'zjai-browser-plugin-v3.4.17.zip'
+  'v3.4.17': 'zjai-browser-plugin-v3.4.17.zip',
+  'v3.4.18': 'zjai-browser-plugin-v3.4.18.zip'
 };
 
 function allowedOrigin(request, env) {
