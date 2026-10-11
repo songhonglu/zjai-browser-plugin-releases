@@ -15,12 +15,6 @@
     "v3.4.14": {
       "zjai-browser-plugin-v3.4.14.zip": 0
     },
-    "v3.4.8": {
-      "zjai-browser-plugin-v3.4.8.zip": 12
-    },
-    "v3.4.9": {
-      "zjai-browser-plugin-v3.4.9.zip": 17
-    },
     "v3.4.15": {
       "zjai-browser-plugin-v3.4.15.zip": 0
     },
@@ -29,6 +23,12 @@
     },
     "v3.4.17": {
       "zjai-browser-plugin-v3.4.17.zip": 0
+    },
+    "v3.4.8": {
+      "zjai-browser-plugin-v3.4.8.zip": 12
+    },
+    "v3.4.9": {
+      "zjai-browser-plugin-v3.4.9.zip": 17
     }
   },
   "counts": {
@@ -47,12 +47,6 @@
     "v3.4.14": {
       "zjai-browser-plugin-v3.4.14.zip": 4
     },
-    "v3.4.8": {
-      "zjai-browser-plugin-v3.4.8.zip": 12
-    },
-    "v3.4.9": {
-      "zjai-browser-plugin-v3.4.9.zip": 17
-    },
     "v3.4.15": {
       "zjai-browser-plugin-v3.4.15.zip": 1
     },
@@ -61,6 +55,12 @@
     },
     "v3.4.17": {
       "zjai-browser-plugin-v3.4.17.zip": 0
+    },
+    "v3.4.8": {
+      "zjai-browser-plugin-v3.4.8.zip": 12
+    },
+    "v3.4.9": {
+      "zjai-browser-plugin-v3.4.9.zip": 17
     }
   },
   "githubReleaseStart": {
@@ -79,12 +79,6 @@
     "v3.4.14": {
       "zjai-browser-plugin-v3.4.14.zip": 0
     },
-    "v3.4.8": {
-      "zjai-browser-plugin-v3.4.8.zip": 10
-    },
-    "v3.4.9": {
-      "zjai-browser-plugin-v3.4.9.zip": 10
-    },
     "v3.4.15": {
       "zjai-browser-plugin-v3.4.15.zip": 0
     },
@@ -93,6 +87,12 @@
     },
     "v3.4.17": {
       "zjai-browser-plugin-v3.4.17.zip": 0
+    },
+    "v3.4.8": {
+      "zjai-browser-plugin-v3.4.8.zip": 10
+    },
+    "v3.4.9": {
+      "zjai-browser-plugin-v3.4.9.zip": 10
     }
   }
 }
