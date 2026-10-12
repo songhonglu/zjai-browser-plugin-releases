@@ -1,4 +1,6 @@
 {
   "version": "3.4.18",
-  "url": "https://songhonglu.github.io/zjai-browser-plugin-releases/"
+  "url": "https://songhonglu.github.io/zjai-browser-plugin-releases/",
+  "package": "https://github.com/songhonglu/zjai-browser-plugin-releases/releases/download/v3.4.18/zjai-browser-plugin-v3.4.18.zip",
+  "sha256": "4f8bd258581daf178ea98fdf125dfb0992ee6bcadee0fc0cae66783a64fb7b93"
 }
