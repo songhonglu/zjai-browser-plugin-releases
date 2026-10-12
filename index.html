@@ -685,11 +685,10 @@
       <strong style="font-size:16px">可选：本机更新器</strong>
       <p style="color:var(--sub);font-size:14px;margin:8px 0 0">不想每次手动下载再覆盖目录，可以另装这个小程序。它不在插件里面。不安装它，插件功能不受影响，仍按上面的步骤手动更新。</p>
       <p style="color:var(--sub);font-size:14px;margin:8px 0 0">第一次要先完成上面的安装。然后运行更新器，选出含 <code>manifest.json</code> 的目录。之后每 30 分钟检查一次。Chrome 和 Edge 都退出后才会覆盖，下次打开浏览器生效。</p>
-      <p style="color:var(--sub);font-size:14px;margin:8px 0 0">macOS 下载后如果不能直接打开，在终端进入下载位置，执行 <code>chmod +x</code> 对应文件，再运行 <code>./zjai-updater-macos-arm64 setup --dir &lt;插件目录&gt;</code>。Intel 芯片把文件名换成 amd64。Windows 运行 exe 后使用同样的 <code>setup --dir</code>。</p>
+      <p style="color:var(--sub);font-size:14px;margin:8px 0 0">Mac 下载 DMG，打开后把「随事更新器」拖到「应用程序」，再从那里双击打开，按提示选出插件目录。Apple 芯片和 Intel 都用这一个安装包。如果系统提示无法验证开发者，在「应用程序」里按住 Control 点它，选择「打开」。Windows 下载 exe 后运行 <code>zjai-updater-windows-amd64.exe setup --dir &lt;插件目录&gt;</code>。</p>
       <div style="display:flex;flex-wrap:wrap;gap:10px;margin-top:14px">
-        <a class="btn-line" href="https://github.com/songhonglu/zjai-browser-plugin-releases/releases/download/v3.4.18/zjai-updater-macos-arm64">macOS Apple 芯片</a>
-        <a class="btn-line" href="https://github.com/songhonglu/zjai-browser-plugin-releases/releases/download/v3.4.18/zjai-updater-macos-amd64">macOS Intel</a>
-        <a class="btn-line" href="https://github.com/songhonglu/zjai-browser-plugin-releases/releases/download/v3.4.18/zjai-updater-windows-amd64.exe">Windows</a>
+        <a class="btn-line" href="https://github.com/songhonglu/zjai-browser-plugin-releases/releases/download/v3.4.18/zjai-updater-macos.dmg">下载 macOS 安装包（DMG）</a>
+        <a class="btn-line" href="https://github.com/songhonglu/zjai-browser-plugin-releases/releases/download/v3.4.18/zjai-updater-windows-amd64.exe">下载 Windows 程序（EXE）</a>
       </div>
     </div>
   </section>
