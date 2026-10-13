@@ -68,6 +68,41 @@
   .btn-line{display:inline-block;background:#eff6ff;color:#1d4ed8;font-weight:700;font-size:14px;
     padding:8px 14px;border-radius:10px}
   .btn-line:hover{background:#dbeafe;color:#1d4ed8}
+  .btn-solid{display:inline-block;background:var(--grad);color:#fff;font-weight:800;font-size:15px;
+    padding:10px 18px;border-radius:12px;box-shadow:0 8px 18px rgba(37,99,235,.28)}
+  .btn-solid:hover{color:#fff;transform:translateY(-1px)}
+  .nav .logo img{width:28px;height:28px;border-radius:50%;object-fit:cover}
+  .hero-grid{max-width:1040px;margin:0 auto;display:grid;grid-template-columns:1.15fr .85fr;gap:36px;align-items:center;text-align:left}
+  .hero-grid h1{font-size:clamp(40px,5vw,64px)}
+  .hero-grid .lead-line{font-size:20px;font-weight:700;margin-top:8px}
+  .hero-grid .sub{max-width:520px;margin:8px 0 0;font-size:15px;opacity:.92}
+  .actions{display:flex;gap:12px;margin-top:22px;flex-wrap:wrap}
+  .actions a{min-width:180px;height:46px;padding:0 18px;border-radius:12px;display:inline-flex;align-items:center;justify-content:center;font-weight:800;font-size:15px}
+  .actions .primary{background:#fff;color:#1d4ed8;box-shadow:0 8px 18px rgba(0,0,0,.16)}
+  .actions .primary:hover{color:#1d4ed8}
+  .actions .secondary{background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,.72)}
+  .actions .secondary:hover{background:rgba(255,255,255,.12);color:#fff}
+  .hero-alt{margin-top:14px;font-size:13px;opacity:.82}
+  .hero-alt a{color:#fff;border-bottom:1px solid rgba(255,255,255,.55)}
+  .stage{position:relative;width:280px;height:280px;margin-left:auto}
+  .fan{position:absolute;inset:8px;border-radius:50%;
+    background:conic-gradient(#16a34a 0 72deg,#f97316 72deg 144deg,#ef4444 144deg 216deg,#2563eb 216deg 288deg,#7c3aed 288deg 360deg);
+    -webkit-mask:radial-gradient(circle,transparent 58px,#000 59px);mask:radial-gradient(circle,transparent 58px,#000 59px)}
+  .ball{position:absolute;left:50%;top:50%;width:92px;height:92px;transform:translate(-50%,-50%);border-radius:50%;overflow:hidden;border:4px solid #fff;box-shadow:0 10px 24px rgba(0,0,0,.22);background:#fff}
+  .ball img{width:100%;height:100%;object-fit:cover;display:block}
+  .reddot{position:absolute;left:168px;top:78px;width:16px;height:16px;border-radius:50%;background:#ef4444;border:2px solid #fff}
+  .stage-cap{text-align:center;color:rgba(255,255,255,.88);font-size:13px;margin-top:8px}
+  .os{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px}
+  .os h3{font-size:16px;margin-bottom:8px}
+  .os ol{margin:0 0 14px 18px;color:var(--sub);font-size:14px}
+  .os li{margin:4px 0}
+  @media(max-width:800px){
+    .hero-grid{grid-template-columns:1fr;text-align:center}
+    .hero-grid .sub{margin-left:auto;margin-right:auto}
+    .actions{justify-content:center}
+    .stage{margin:18px auto 0}
+    .os{grid-template-columns:1fr}
+  }
   .nav .nav-dl{background:var(--grad);color:#fff;font-weight:800;font-size:13.5px;padding:7px 15px;
     border-radius:9px;box-shadow:0 6px 14px rgba(37,99,235,.32);margin-left:8px;transition:.2s}
   .nav .nav-dl:hover{color:#fff;transform:translateY(-1px)}
@@ -189,41 +224,42 @@
 </head>
 <body>
 <nav class="nav">
-  <div class="logo"><span class="dot"></span>ZJAI</div>
+  <div class="logo"><img src="logo.png" alt="">随事</div>
   <a href="#problem">问题</a>
   <a href="#how">原理</a>
   <a href="#benefits">功能</a>
   <a href="#install">安装</a>
   <a href="download-archive.html">历史版本</a>
-  <a href="https://github.com/songhonglu/zjai-browser-plugin-releases/releases/download/v3.4.18/zjai-browser-plugin-v3.4.18.zip" class="nav-dl">下载</a>
+  <a href="https://github.com/songhonglu/zjai-browser-plugin-releases/releases/download/v3.4.18/zjai-browser-plugin-v3.4.18.zip" class="nav-dl">下载插件</a>
   <span class="ver">v3.4.18</span>
 </nav>
 
 <header class="hero">
-  <div class="badge hi d1">浏览器扩展 · 致远协同与 CTP-Studio</div>
-  <h1 class="hi d2">随事</h1>
-  <p class="hi d3">把协同里的重复事，放到手边。覆盖待办批量处理、已发和已办查询、工时签卡、周计划汇总、项目台账、项目移交、代码扫描、<span style="white-space:nowrap">工单速配</span>和<span style="white-space:nowrap">冲突检测</span>。不改 OA 服务器。</p>
-  <div class="stamp hi d4">
-    <span>按当前登录账号取数</span>
-    <span>不改服务器代码</span>
-    <span>协同页和 Studio 页分别生效</span>
-  </div>
-  <div class="cta hi d5">
-    <a class="btn-download" href="https://github.com/songhonglu/zjai-browser-plugin-releases/releases/download/v3.4.18/zjai-browser-plugin-v3.4.18.zip">下载扩展 v3.4.18</a>
-    <a class="btn-ghost" href="download-archive.html">查看历史下载页</a>
+  <div class="hero-grid">
+    <div>
+      <div class="badge hi d1">ZJAI · 致远协同浏览器扩展</div>
+      <h1 class="hi d2">随事</h1>
+      <p class="lead-line hi d3">把协同里的重复事，放到手边。</p>
+      <p class="sub hi d3">已登录后，在当前页处理待办、查询和工单。不改 OA 服务器。首页是五色扇形入口。</p>
+    </div>
+    <div class="stage hi d4" aria-hidden="true">
+      <div class="fan"></div>
+      <div class="ball"><img src="logo.png" alt=""></div>
+      <i class="reddot"></i>
+    </div>
   </div>
 </header>
 
 <div class="wrap">
   <div class="stats reveal">
-    <div class="card stat"><div class="num">12 项</div><div class="lab">插件里的功能</div></div>
-    <div class="card stat"><div class="num">6 类</div><div class="lab">可批量处理的单据</div></div>
-    <div class="card stat"><div class="num">2 处</div><div class="lab">协同首页与 Studio</div></div>
-    <div class="card stat"><div class="num">v3.4.18</div><div class="lab">当前公开发布版本</div></div>
+    <div class="card stat"><div class="num">先登录</div><div class="lab">未登录不显示首页入口</div></div>
+    <div class="card stat"><div class="num">不改服务器</div><div class="lab">只用当前账号取数</div></div>
+    <div class="card stat"><div class="num">两处页面</div><div class="lab">协同首页与 CTP-Studio</div></div>
+    <div class="card stat"><div class="num">更新可选</div><div class="lab">不装更新器也能手动覆盖</div></div>
   </div>
 
   <section id="problem">
-    <div class="sec-head reveal"><div class="sec-num">1</div><h2>它解决什么问题</h2><div class="en">PROBLEM</div></div>
+    <div class="sec-head reveal"><div class="sec-num">1</div><h2>它解决什么问题</h2></div>
     <p class="lead reveal">工时、周报、待办、台账、移交、代码和工单，原来散落在不同页面。ZJAI 把这些重复动作做成当前页面上的入口，仍使用你已经登录的账号。</p>
     <div class="card compare reveal">
       <div class="col before">
@@ -248,7 +284,7 @@
   </section>
 
   <section id="how">
-    <div class="sec-head reveal"><div class="sec-num">2</div><h2>它怎么做到的</h2><div class="en">HOW IT WORKS</div></div>
+    <div class="sec-head reveal"><div class="sec-num">2</div><h2>它怎么做到的</h2></div>
     <p class="lead reveal">扩展按页面注入。协同首页走悬浮入口；周计划、台账、移交和工单页在识别到对应页面后出现自己的入口；代码扫描只出现在 CTP-Studio。</p>
     <div class="card flow reveal">
       <div class="node">
@@ -273,7 +309,7 @@
   </section>
 
   <section id="benefits">
-    <div class="sec-head reveal"><div class="sec-num">3</div><h2>全部功能</h2><div class="en">ALL FEATURES</div></div>
+    <div class="sec-head reveal"><div class="sec-num">3</div><h2>全部功能</h2></div>
     <p class="lead reveal">每一项都按实际页面来写：左边是界面示意，右边是打开后能做的事。点下面的名称可以直接跳到对应功能。</p>
     <div class="toc reveal">
       <a href="#feat-batch">批量处理</a>
@@ -666,13 +702,13 @@
   </section>
 
   <section id="install">
-    <div class="sec-head reveal"><div class="sec-num">4</div><h2>30 秒安装</h2><div class="en">INSTALL</div></div>
+    <div class="sec-head reveal"><div class="sec-num">4</div><h2>安装前先确认</h2></div>
     <div class="card reveal" style="padding:22px 24px;display:flex;align-items:center;gap:18px;flex-wrap:wrap;margin-bottom:26px">
       <div style="flex:1 1 280px">
         <strong style="font-size:16px">先下载扩展压缩包</strong>
         <p style="color:var(--sub);font-size:14px;margin-top:6px">下载 <code>zjai-browser-plugin-v3.4.18.zip</code>，解压后选中含 <code>manifest.json</code> 的文件夹。</p>
       </div>
-      <a class="btn-download" href="https://github.com/songhonglu/zjai-browser-plugin-releases/releases/download/v3.4.18/zjai-browser-plugin-v3.4.18.zip">下载 v3.4.18 压缩包</a>
+      <a class="btn-solid" href="https://github.com/songhonglu/zjai-browser-plugin-releases/releases/download/v3.4.18/zjai-browser-plugin-v3.4.18.zip">下载 v3.4.18 压缩包</a>
     </div>
     <div class="steps">
       <div class="card step reveal"><div class="n">1</div><h4>打开扩展页</h4><p>Chrome 输入 <code>chrome://extensions</code>，Edge 输入 <code>edge://extensions</code></p></div>
@@ -683,18 +719,32 @@
     <div class="note reveal">以后仍可以下载新压缩包，覆盖原来的目录。只改了脚本时，也可以在扩展卡片上点刷新后，再刷新 OA 页面。</div>
     <div class="card reveal" id="updater" style="padding:22px 24px;margin-top:26px">
       <strong style="font-size:16px">可选：本机更新器</strong>
-      <p style="color:var(--sub);font-size:14px;margin:8px 0 0">不想每次手动下载再覆盖目录，可以另装这个小程序。它不在插件里面。不安装它，插件功能不受影响，仍按上面的步骤手动更新。</p>
-      <p style="color:var(--sub);font-size:14px;margin:8px 0 0">第一次要先完成上面的安装。然后运行更新器，选出含 <code>manifest.json</code> 的目录。之后每 30 分钟检查一次。Chrome 和 Edge 都退出后才会覆盖，下次打开浏览器生效。</p>
-      <p style="color:var(--sub);font-size:14px;margin:8px 0 0">Mac 下载 DMG，打开后把「随事更新器」拖到「应用程序」，再从那里双击打开，按提示选出插件目录。Apple 芯片和 Intel 都用这一个安装包。如果系统提示无法验证开发者，在「应用程序」里按住 Control 点它，选择「打开」。Windows 下载 exe 后运行 <code>zjai-updater-windows-amd64.exe setup --dir &lt;插件目录&gt;</code>。</p>
-      <div style="display:flex;flex-wrap:wrap;gap:10px;margin-top:14px">
-        <a class="btn-line" href="https://github.com/songhonglu/zjai-browser-plugin-releases/releases/download/v3.4.18/zjai-updater-macos.dmg">下载 macOS 安装包（DMG）</a>
-        <a class="btn-line" href="https://github.com/songhonglu/zjai-browser-plugin-releases/releases/download/v3.4.18/zjai-updater-windows-amd64.exe">下载 Windows 程序（EXE）</a>
+      <p style="color:var(--sub);font-size:14px;margin:8px 0 0">不想每次手动下载再覆盖目录，可以另装这个小程序。它不在插件里面。不安装它，插件功能不受影响。</p>
+      <div class="os">
+        <div>
+          <h3>Mac</h3>
+          <ol>
+            <li>下载 DMG，把「随事更新器」拖到「应用程序」。</li>
+            <li>如果系统拦住，按住 Control 点它，选择「打开」。</li>
+            <li>按提示选出含 manifest.json 的插件目录。</li>
+          </ol>
+          <a class="btn-solid" href="https://github.com/songhonglu/zjai-browser-plugin-releases/releases/download/v3.4.18/zjai-updater-macos.dmg">下载 macOS 安装包</a>
+        </div>
+        <div>
+          <h3>Windows</h3>
+          <ol>
+            <li>下载 exe。</li>
+            <li>在命令行运行 setup，并选出插件目录。</li>
+            <li>不要只双击 exe，窗口会马上关掉。</li>
+          </ol>
+          <a class="btn-solid" href="https://github.com/songhonglu/zjai-browser-plugin-releases/releases/download/v3.4.18/zjai-updater-windows-amd64.exe">下载 Windows 程序</a>
+        </div>
       </div>
     </div>
   </section>
 
   <section id="versions">
-    <div class="sec-head reveal"><div class="sec-num">5</div><h2>版本与兼容</h2><div class="en">COMPATIBILITY</div></div>
+    <div class="sec-head reveal"><div class="sec-num">5</div><h2>版本与兼容</h2></div>
     <div class="card reveal" style="padding:6px 6px 0">
       <table class="cmp">
         <thead><tr><th>环境</th><th>状态</th><th>说明</th></tr></thead>
