@@ -13,6 +13,7 @@ const ASSETS = {
   'v3.4.16': 'zjai-browser-plugin-v3.4.16.zip',
   'v3.4.17': 'zjai-browser-plugin-v3.4.17.zip',
   'v3.4.18': 'zjai-browser-plugin-v3.4.18.zip'
+  'v3.4.19': 'zjai-browser-plugin-v3.4.19.zip'
 };
 
 function allowedOrigin(request, env) {
