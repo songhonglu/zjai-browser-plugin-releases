@@ -11,9 +11,9 @@ const downloads = JSON.parse(fs.readFileSync(path.join(root, 'downloads.json'), 
 const workflow = fs.readFileSync(path.join(root, '.github', 'workflows', 'refresh-download-counts.yml'), 'utf8');
 const refreshFilter = path.join(root, '.github', 'workflows', 'refresh-download-counts.jq');
 const worker = fs.readFileSync(path.join(root, 'worker.js'), 'utf8');
-const versions = ['3.4.8', '3.4.9', '3.4.10', '3.4.11', '3.4.12', '3.4.13', '3.4.14', '3.4.15', '3.4.16', '3.4.17', '3.4.18', '3.4.19'];
-const baselineCounts = {'3.4.8': 12, '3.4.9': 17, '3.4.10': 24, '3.4.11': 38, '3.4.12': 0, '3.4.13': 0, '3.4.14': 0, '3.4.15': 0, '3.4.16': 0, '3.4.17': 0, '3.4.18': 0, '3.4.19': 0};
-const releaseStarts = {'3.4.8': 10, '3.4.9': 10, '3.4.10': 11, '3.4.11': 12, '3.4.12': 0, '3.4.13': 0, '3.4.14': 0, '3.4.15': 0, '3.4.16': 0, '3.4.17': 0, '3.4.18': 0, '3.4.19': 0};
+const versions = ['3.4.8', '3.4.9', '3.4.10', '3.4.11', '3.4.12', '3.4.13', '3.4.14', '3.4.15', '3.4.16', '3.4.17', '3.4.18', '3.4.19', '3.4.27'];
+const baselineCounts = {'3.4.8': 12, '3.4.9': 17, '3.4.10': 24, '3.4.11': 38, '3.4.12': 0, '3.4.13': 0, '3.4.14': 0, '3.4.15': 0, '3.4.16': 0, '3.4.17': 0, '3.4.18': 0, '3.4.19': 0, '3.4.27': 0};
+const releaseStarts = {'3.4.8': 10, '3.4.9': 10, '3.4.10': 11, '3.4.11': 12, '3.4.12': 0, '3.4.13': 0, '3.4.14': 0, '3.4.15': 0, '3.4.16': 0, '3.4.17': 0, '3.4.18': 0, '3.4.19': 0, '3.4.27': 0};
 
 assert.match(index, /ZJAI-PLUGIN/);
 assert.match(index, /<html lang="zh-CN" data-theme="light">/);
@@ -32,7 +32,7 @@ assert.match(index, /https:\/\/github\.com\/songhonglu\/zjai-browser-plugin-rele
 assert.match(index, /v3\.4\.15/);
 assert.match(index, /https:\/\/github\.com\/songhonglu\/zjai-browser-plugin-releases\/releases\/download\/v3\.4\.15\/zjai-browser-plugin-v3\.4\.15\.zip/);
 assert.match(index, /v3\.4\.16/);
-assert.match(index, /https:\/\/github\.com\/songhonglu\/zjai-browser-plugin-releases\/releases\/download\/v3\.4\.19\/zjai-browser-plugin-v3\.4\.19\.zip/);
+assert.match(index, /https:\/\/github\.com\/songhonglu\/zjai-browser-plugin-releases\/releases\/download\/v3\.4\.27\/zjai-browser-plugin-v3\.4\.27\.zip/);
 assert.match(index, /v3\.4\.10/);
 assert.match(index, /https:\/\/github\.com\/songhonglu\/zjai-browser-plugin-releases\/releases\/download\/v3\.4\.10\/zjai-browser-plugin-v3\.4\.10\.zip/);
 assert.match(index, /安装步骤/);
@@ -89,7 +89,7 @@ assert.match(promo, /项目移交会议纪要/);
 assert.match(promo, /代码合规扫描/);
 assert.match(promo, /工单速配/);
 assert.match(promo, /客开冲突雷达/);
-assert.match(promo, /https:\/\/github\.com\/songhonglu\/zjai-browser-plugin-releases\/releases\/download\/v3\.4\.19\/zjai-browser-plugin-v3\.4\.19\.zip/);
+assert.match(promo, /https:\/\/github\.com\/songhonglu\/zjai-browser-plugin-releases\/releases\/download\/v3\.4\.27\/zjai-browser-plugin-v3\.4\.27\.zip/);
 assert.match(promo, /download-archive\.html/, '宣传页应保留原下载页入口');
 assert.match(promo, /已发查询/);
 assert.match(promo, /扇形入口/);
