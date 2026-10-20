@@ -47,6 +47,9 @@
     },
     "v3.4.38": {
       "zjai-browser-plugin-v3.4.38.zip": 0
+    },
+    "v3.4.39": {
+      "zjai-browser-plugin-v3.4.39.zip": 0
     }
   },
   "counts": {
@@ -99,6 +102,9 @@
     },
     "v3.4.38": {
       "zjai-browser-plugin-v3.4.38.zip": 0
+    },
+    "v3.4.39": {
+      "zjai-browser-plugin-v3.4.39.zip": 0
     }
   },
   "githubReleaseStart": {
@@ -149,6 +155,9 @@
     },
     "v3.4.38": {
       "zjai-browser-plugin-v3.4.38.zip": 0
+    },
+    "v3.4.39": {
+      "zjai-browser-plugin-v3.4.39.zip": 0
     }
   }
 }
