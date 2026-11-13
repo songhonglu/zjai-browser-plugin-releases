@@ -230,8 +230,8 @@
   <a href="#benefits">功能</a>
   <a href="#install">安装</a>
   <a href="download-archive.html">历史版本</a>
-  <a href="https://github.com/songhonglu/zjai-browser-plugin-releases/releases/download/v3.4.43/zjai-browser-plugin-v3.4.43.zip" class="nav-dl">下载插件</a>
-  <span class="ver">v3.4.43</span>
+  <a href="https://github.com/songhonglu/zjai-browser-plugin-releases/releases/download/v3.4.44/zjai-browser-plugin-v3.4.44.zip" class="nav-dl">下载插件</a>
+  <span class="ver">v3.4.44</span>
 </nav>
 
 <header class="hero">
@@ -323,6 +323,7 @@
       <a href="#feat-scan">代码扫描</a>
       <a href="#feat-bug">工单速配</a>
       <a href="#feat-conflict">冲突雷达</a>
+      <a href="#feat-build">构建重命名</a>
       <a href="#feat-icon">自定义图标</a>
     </div>
 
@@ -672,6 +673,34 @@
       </div>
     </article>
 
+    <article class="feature-block" id="feat-build">
+      <div class="sec-head reveal"><div class="sec-num">13</div><h3>构建文件重命名</h3><div class="en">CTP-Studio 构建管理</div></div>
+      <p class="lead reveal">在构建管理页点「下载」时，扩展会读取这一行的「构建备注」，把安装包直接存成备注名，不用再手动改名。</p>
+      <div class="wl">
+        <div class="mock reveal">
+          <div class="mh">构建管理 · 下载</div>
+          <div class="mb">
+            <div class="row" style="border:none"><span>构建备注</span><b style="margin-left:auto">杭州-客户A-V5</b></div>
+            <div class="row" style="border:none"><span>原文件名</span><b style="margin-left:auto">CP_20261113.zip</b></div>
+            <div class="row" style="border:none"><span>保存为</span><b style="margin-left:auto;color:#059669">杭州-客户A-V5.zip</b></div>
+            <div class="mini">备注为空时保存为 build.zip</div>
+          </div>
+        </div>
+        <div class="fmt reveal">
+          <table>
+            <thead><tr><th>情况</th><th>处理结果</th></tr></thead>
+            <tbody>
+              <tr><td>备注有内容</td><td>用备注作为文件名，最多保留 80 个字符</td></tr>
+              <tr><td>备注含非法字符</td><td>自动替换为 <code>-</code>，保证能正常保存</td></tr>
+              <tr><td>备注为空</td><td>回退为 <code>build.zip</code></td></tr>
+              <tr><td>文件来源</td><td>仍从原下载地址获取，只改保存的名字</td></tr>
+            </tbody>
+          </table>
+          <div class="tip">只在 CTP-Studio 构建管理页生效，不影响 OA 页面下载。</div>
+        </div>
+      </div>
+    </article>
+
     <article class="feature-block" id="feat-icon">
       <div class="sec-head reveal"><div class="sec-num">12</div><h3>自定义入口图标</h3><div class="en">扩展设置页</div></div>
       <p class="lead reveal">悬浮球和浏览器工具栏图标可以换成自己的图。裁成圆形并确认后，刷新 OA 页面就会换成新图标。</p>
@@ -707,9 +736,9 @@
     <div class="card reveal" style="padding:22px 24px;display:flex;align-items:center;gap:18px;flex-wrap:wrap;margin-bottom:26px">
       <div style="flex:1 1 280px">
         <strong style="font-size:16px">先下载扩展压缩包</strong>
-        <p style="color:var(--sub);font-size:14px;margin-top:6px">下载 <code>zjai-browser-plugin-v3.4.43.zip</code>，解压后选中含 <code>manifest.json</code> 的文件夹。</p>
+        <p style="color:var(--sub);font-size:14px;margin-top:6px">下载 <code>zjai-browser-plugin-v3.4.44.zip</code>，解压后选中含 <code>manifest.json</code> 的文件夹。</p>
       </div>
-      <a class="btn-solid" href="https://github.com/songhonglu/zjai-browser-plugin-releases/releases/download/v3.4.43/zjai-browser-plugin-v3.4.43.zip">下载 v3.4.43 压缩包</a>
+      <a class="btn-solid" href="https://github.com/songhonglu/zjai-browser-plugin-releases/releases/download/v3.4.44/zjai-browser-plugin-v3.4.44.zip">下载 v3.4.44 压缩包</a>
     </div>
     <div class="steps">
       <div class="card step reveal"><div class="n">1</div><h4>打开扩展页</h4><p>Chrome 输入 <code>chrome://extensions</code>，Edge 输入 <code>edge://extensions</code></p></div>
@@ -756,7 +785,7 @@
         </tbody>
       </table>
     </div>
-    <div class="note reveal">v3.4.8 至 v3.4.43 的安装包和更新说明仍在 <a href="download-archive.html">原下载页</a>，没有删除。</div>
+    <div class="note reveal">v3.4.8 至 v3.4.44 的安装包和更新说明仍在 <a href="download-archive.html">原下载页</a>，没有删除。</div>
   </section>
 
   <div class="foot">
