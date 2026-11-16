@@ -1,5 +1,9 @@
 # ZJAI-PLUGIN 更新日志
 
+## [3.4.50] - 2026-11-16
+
+- 修复 declarativeNetRequest 拦截规则 parse 失败：`object_download` 不是合法 resourceType，改为 `sub_frame`+`main_frame`+`document`。
+- 移除多余的 `declarativeNetRequestWithHosts` 权限（静态 rules.json 只需 `declarativeNetRequest`）。
 ## [3.4.49] - 2026-11-16
 
 - 修复 CTP-Studio 页面 CSP 拦截内联 main-world 注入的问题：改用 manifest 声明式 "world" = "MAIN" content script（扩展特权，不受页面 CSP 限制）。
