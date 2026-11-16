@@ -2,10 +2,11 @@
 
 ## [3.4.49] - 2026-11-16
 
-- 修复 CTP-Studio 页面 CSP 拦截内联 main-world 注入的问题：改用 manifest 声明式  content script（扩展特权，不受页面 CSP 限制）。
+- 修复 CTP-Studio 页面 CSP 拦截内联 main-world 注入的问题：改用 manifest 声明式 "world" = "MAIN" content script（扩展特权，不受页面 CSP 限制）。
 - 客户名称读取放宽（20+ 元素类型、250px 高度、8 种组织关键词、兜底 document.title）。
 - 防重复下载守卫（sentFlag）：一次点击只产生 1 个 zip。
-- 文件名格式：。
+- 文件名格式：客户名_构建备注_YYYYMMDD.zip（缺任一段自动省略）。
+
 ## [3.4.48] - 2026-11-16
 
 - 修复一次点击「下载」产生多个 zip 的问题（加 sentFlag 守卫，同一次点击内去重）。
