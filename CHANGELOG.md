@@ -1,5 +1,9 @@
 # ZJAI-PLUGIN 更新日志
 
+## [3.4.53] - 2026-11-19
+
+- 客户名称改为跨 frame 搜索 #customerName（本 frame + window.top + 所有子 frame）。
+- 未取到客户名时打印一条诊断日志（本frame/top/sub 各层探测结果），方便定位。
 ## [3.4.52] - 2026-11-19
 
 - 修复客户名称读取：#customerName 是 <input> 元素，值在 value 属性而非 textContent，改为 el.value || el.textContent 优先取 value。
