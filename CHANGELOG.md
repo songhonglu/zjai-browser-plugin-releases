@@ -1,5 +1,8 @@
 # ZJAI-PLUGIN 更新日志
 
+## [3.4.51] - 2026-11-19
+
+- 客户名称获取改为优先读 id=customerName 元素，读不到再走模糊匹配兜底。
 ## [3.4.50] - 2026-11-16
 
 - 修复 declarativeNetRequest 拦截规则 parse 失败：`object_download` 不是合法 resourceType，改为 `sub_frame`+`main_frame`+`document`。
