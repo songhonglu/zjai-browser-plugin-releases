@@ -2,7 +2,7 @@
 
 ## [3.4.52] - 2026-11-19
 
-- 修复客户名称读取： 是  元素，值在  属性而非 ，改为  优先取 value。
+- 修复客户名称读取：#customerName 是 <input> 元素，值在 value 属性而非 textContent，改为 el.value || el.textContent 优先取 value。
 ## [3.4.51] - 2026-11-19
 
 - 客户名称获取改为优先读 id=customerName 元素，读不到再走模糊匹配兜底。
