@@ -1,5 +1,8 @@
 # ZJAI-PLUGIN 更新日志
 
+## [3.4.54] - 2026-11-20
+
+- 修复多项目页签同时打开时客户名称错乱：客户名改为取当前选中页签 .menuTab.active 的文本，#customerName 仅作兜底（getElementById 只取第一个会错乱）。
 ## [3.4.53] - 2026-11-19
 
 - 客户名称改为跨 frame 搜索 #customerName（本 frame + window.top + 所有子 frame）。
