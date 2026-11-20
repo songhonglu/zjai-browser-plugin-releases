@@ -1,5 +1,8 @@
 # ZJAI-PLUGIN 更新日志
 
+## [3.4.56] - 2026-11-20
+
+- 修复 declarativeNetRequest 拦截规则 parse 失败：`document` 不是合法 resourceType，改为 `sub_frame`+`main_frame`。
 ## [3.4.55] - 2026-11-20
 
 - 文件名末尾日期升级为完整时间戳（YYYYMMDDHHMMSS）：同一天多个补丁包可按生成时间区分。
