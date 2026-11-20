@@ -1,5 +1,8 @@
 # ZJAI-PLUGIN 更新日志
 
+## [3.4.57] - 2026-11-21
+
+- 例行发布：无功能变更，同步最新 build-download 模块代码至发布包。
 ## [3.4.56] - 2026-11-20
 
 - 修复 declarativeNetRequest 拦截规则 parse 失败：`document` 不是合法 resourceType，改为 `sub_frame`+`main_frame`。
