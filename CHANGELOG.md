@@ -1,5 +1,8 @@
 # ZJAI-PLUGIN 更新日志
 
+## [3.4.63] - 2026-11-25
+
+- 修复 select 字段自动回填：新增 writeCap4FormModel，从字段 DOM 沿 Vue 祖先链爬到 CAP4 表单引擎，按字段编号把 $data 中的值直接改成字典 code（前 4 版全在子组件上打转，未触及表单引擎层）。
 ## [3.4.62] - 2026-11-25
 
 - 修复 select 字段自动回填：resolveSelectCode 匹配 valueFormatMap 的 showValue 属性（而非对整个 value 对象调用 String），正确反查字典 code 后 $emit input 同步模型。
