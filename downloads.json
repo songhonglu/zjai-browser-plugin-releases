@@ -1,11 +1,5 @@
 {
   "baseline": {
-    "v3.4.8": {
-      "zjai-browser-plugin-v3.4.8.zip": 12
-    },
-    "v3.4.9": {
-      "zjai-browser-plugin-v3.4.9.zip": 17
-    },
     "v3.4.10": {
       "zjai-browser-plugin-v3.4.10.zip": 24
     },
@@ -119,15 +113,15 @@
     },
     "v3.4.63": {
       "zjai-browser-plugin-v3.4.63.zip": 0
+    },
+    "v3.4.8": {
+      "zjai-browser-plugin-v3.4.8.zip": 12
+    },
+    "v3.4.9": {
+      "zjai-browser-plugin-v3.4.9.zip": 17
     }
   },
   "counts": {
-    "v3.4.8": {
-      "zjai-browser-plugin-v3.4.8.zip": 13
-    },
-    "v3.4.9": {
-      "zjai-browser-plugin-v3.4.9.zip": 18
-    },
     "v3.4.10": {
       "zjai-browser-plugin-v3.4.10.zip": 25
     },
@@ -227,31 +221,31 @@
       "zjai-browser-plugin-v3.4.57.zip": 1
     },
     "v3.4.58": {
-      "zjai-browser-plugin-v3.4.58.zip": 0
+      "zjai-browser-plugin-v3.4.58.zip": 1
     },
     "v3.4.59": {
-      "zjai-browser-plugin-v3.4.59.zip": 0
+      "zjai-browser-plugin-v3.4.59.zip": 1
     },
     "v3.4.60": {
-      "zjai-browser-plugin-v3.4.60.zip": 0
+      "zjai-browser-plugin-v3.4.60.zip": 1
     },
     "v3.4.61": {
-      "zjai-browser-plugin-v3.4.61.zip": 0
+      "zjai-browser-plugin-v3.4.61.zip": 1
     },
     "v3.4.62": {
-      "zjai-browser-plugin-v3.4.62.zip": 0
+      "zjai-browser-plugin-v3.4.62.zip": 1
     },
     "v3.4.63": {
-      "zjai-browser-plugin-v3.4.63.zip": 0
+      "zjai-browser-plugin-v3.4.63.zip": 1
+    },
+    "v3.4.8": {
+      "zjai-browser-plugin-v3.4.8.zip": 13
+    },
+    "v3.4.9": {
+      "zjai-browser-plugin-v3.4.9.zip": 18
     }
   },
   "githubReleaseStart": {
-    "v3.4.8": {
-      "zjai-browser-plugin-v3.4.8.zip": 10
-    },
-    "v3.4.9": {
-      "zjai-browser-plugin-v3.4.9.zip": 10
-    },
     "v3.4.10": {
       "zjai-browser-plugin-v3.4.10.zip": 11
     },
@@ -365,6 +359,12 @@
     },
     "v3.4.63": {
       "zjai-browser-plugin-v3.4.63.zip": 0
+    },
+    "v3.4.8": {
+      "zjai-browser-plugin-v3.4.8.zip": 10
+    },
+    "v3.4.9": {
+      "zjai-browser-plugin-v3.4.9.zip": 10
     }
   }
 }
